@@ -81,6 +81,7 @@ class App extends Component {
         
       
       </Router>
+      // "build": "npm run build:css && react-scripts build",
 
     )
   }
