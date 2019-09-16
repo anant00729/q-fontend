@@ -47,9 +47,9 @@ class App extends Component {
 
     return (
       <Router>
-      
+        <div>ajsdhjsfgd</div>
 
-        <div className="w-full relative h-screen w-12 absolute">
+        {/* <div className="w-full relative h-screen w-12 absolute">
            
             
 
@@ -75,7 +75,7 @@ class App extends Component {
             
           
           
-        </div>
+        </div> */}
 
         
         
