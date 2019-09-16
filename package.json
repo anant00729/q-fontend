@@ -19,8 +19,9 @@
     "build:css": "postcss src/tailwind.css -o src/index.css",
     "watch:css": "postcss src/tailwind.css -o src/index.css -w",
     "start": "npm run watch:css & react-scripts start",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
-    "gdeploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
