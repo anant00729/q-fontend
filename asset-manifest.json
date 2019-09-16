@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.9fd5ea4e.chunk.css",
-    "main.js": "/static/js/main.6e0badb0.chunk.js",
-    "main.js.map": "/static/js/main.6e0badb0.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.b047a503.js",
-    "runtime~main.js.map": "/static/js/runtime~main.b047a503.js.map",
-    "static/js/2.905705dc.chunk.js": "/static/js/2.905705dc.chunk.js",
-    "static/js/2.905705dc.chunk.js.map": "/static/js/2.905705dc.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.e5083f7d8b677d580c6c241c3cab97b7.js": "/precache-manifest.e5083f7d8b677d580c6c241c3cab97b7.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/main.9fd5ea4e.chunk.css.map": "/static/css/main.9fd5ea4e.chunk.css.map",
-    "static/media/app_img.jpg": "/static/media/app_img.82f6de72.jpg",
-    "static/media/vid.mov": "/static/media/vid.914bf2cc.mov"
+    "main.css": "/q-fontend/static/css/main.40bc14ca.chunk.css",
+    "main.js": "/q-fontend/static/js/main.c7922b5c.chunk.js",
+    "main.js.map": "/q-fontend/static/js/main.c7922b5c.chunk.js.map",
+    "runtime~main.js": "/q-fontend/static/js/runtime~main.7f53f148.js",
+    "runtime~main.js.map": "/q-fontend/static/js/runtime~main.7f53f148.js.map",
+    "static/js/2.905705dc.chunk.js": "/q-fontend/static/js/2.905705dc.chunk.js",
+    "static/js/2.905705dc.chunk.js.map": "/q-fontend/static/js/2.905705dc.chunk.js.map",
+    "index.html": "/q-fontend/index.html",
+    "precache-manifest.9cfdf73447817fd060c649aa56c07725.js": "/q-fontend/precache-manifest.9cfdf73447817fd060c649aa56c07725.js",
+    "service-worker.js": "/q-fontend/service-worker.js",
+    "static/css/main.40bc14ca.chunk.css.map": "/q-fontend/static/css/main.40bc14ca.chunk.css.map",
+    "static/media/app_img.jpg": "/q-fontend/static/media/app_img.82f6de72.jpg",
+    "static/media/vid.mov": "/q-fontend/static/media/vid.914bf2cc.mov"
   }
 }
