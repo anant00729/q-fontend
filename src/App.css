@@ -114,3 +114,7 @@
 .hor-list::-webkit-scrollbar-track{
   background: linear-gradient(to right,#201c29,#201c29 1px,#17141d 1px,#17141d);
 }
+
+.hor-list-nobar::-webkit-scrollbar{
+  display: none;
+}
