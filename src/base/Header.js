@@ -3,14 +3,15 @@ import React, {
 } from 'react'
 import { Link } from 'react-router-dom'
 import app_img from '../app_img.jpg';
+import classnames from 'classnames'
+
 export default class Header extends Component {
+
 
   constructor(props){
     super(props)
 
-    this.state = {isToggleOn: true, menuC : props.handleMenuC};
-
-    // This binding is necessary to make `this` work in the callback
+    this.state = {isToggleOn: true, menuC : props.handleMenuC, isUp: props.isUp};
     this.handleMenuC = this.handleMenuC.bind(this)
     
   }
@@ -20,11 +21,26 @@ export default class Header extends Component {
     menuC()
   }
 
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.isUp !== state.isUp) {
+      return {
+        isUp: props.isUp,
+      };
+    }
+    return null
+  }
+
   render() {
 
+    const { isUp } = this.state
 
     
-    return ( <div >
+    return ( 
+    
+    <div 
+    className={classnames('asdasd' ,{'header-anim' : isUp !== 1})}
+    >
       <section className="fixed bg-white h-12 w-full top-0 flex shadow-md justify-between px-4">
               <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
                   <Link href="" className="text-center flex items-center">

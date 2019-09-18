@@ -4,10 +4,12 @@ import BottomBar from './base/BottomBar'
 import Header from './base/Header'
 import HomeMenu from './menu/HomeMenu'
 import Home from './home/Home'
+import ADet from './a_det/ADet';
 
 import { HashRouter as Router, Route , Switch } from 'react-router-dom'
 
 import './App.css';
+
 
 
 
@@ -20,21 +22,56 @@ class App extends Component {
 
     this.state = {
       isMenuOpen : false,
-      
+      position: 0,
+      isUp : 0
     }
 
-    this.handleMenuC = this.handleMenuC.bind(this)
+      this.handleMenuC = this.handleMenuC.bind(this)
+      this.handleScroll = this.handleScroll.bind(this)
     //this.playV = this.playV.bind(this)
   }
 
 
-  handleMenuC(){
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+      window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll(e) {
+    let { position, isUp} = this.state
+
+
+    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+    if (st > position){
+        // downscroll code
+        // 2
+        isUp = 2
+    } else {
+        // upscroll code
+        // 1
+        isUp = 1
+    }
+    position = st <= 0 ? 0 : st;
     
+    this.setState({ position, isUp });
+  }
+
+
+  handleMenuC(){
     let { isMenuOpen } = this.state
+
     this.setState({
       isMenuOpen : !isMenuOpen
     })
   }
+
+
+  
+
+// should start at 0
 
 
 
@@ -43,27 +80,24 @@ class App extends Component {
 
   render() {  
 
-    const { isMenuOpen} = this.state
+    const { isMenuOpen, isUp} = this.state
 
     return (
       <Router>
         
 
         <div className="w-full relative h-screen w-12 absolute">
-           
+
+
+            <div className="pt-12 mb-24">
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/ADet" component={ADet}/>
+            </div>
+
+
+            <Header handleMenuC={this.handleMenuC} isUp={isUp}/>
             
-
-
-
-            <Home/>
-          
-
-
-            <Header handleMenuC={this.handleMenuC}/>
-
             
-
-
             <BottomBar handleMenuC={this.handleMenuC}/>  
 
             {

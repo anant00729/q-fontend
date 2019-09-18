@@ -118,3 +118,17 @@
 .hor-list-nobar::-webkit-scrollbar{
   display: none;
 }
+
+.adet-por-img{
+  height: 24rem;
+}
+
+.header-anim{
+  transform: translateY(-100%);
+  transition: transform 3000ms ease;
+}
+
+.header-anim1{
+  transform: translateY(100%);
+  transition: transform 3000ms ease;
+}
