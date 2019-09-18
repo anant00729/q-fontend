@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fcb274009c8da58b26a0c69aa7de6818",
+    "revision": "8afcf77ddc9d0f8e91d9eac32d5a6d55",
     "url": "/q-fontend/index.html"
   },
   {
-    "revision": "e80f4e1223526d8ae78a",
-    "url": "/q-fontend/static/css/main.e8a29fe5.chunk.css"
+    "revision": "3106cfa8caab222ff2fb",
+    "url": "/q-fontend/static/css/main.4bdb0a27.chunk.css"
   },
   {
-    "revision": "298350cb41ee8a881913",
-    "url": "/q-fontend/static/js/2.905705dc.chunk.js"
+    "revision": "67eae612348d32c7334e",
+    "url": "/q-fontend/static/js/2.674ba556.chunk.js"
   },
   {
-    "revision": "e80f4e1223526d8ae78a",
-    "url": "/q-fontend/static/js/main.5bb51777.chunk.js"
+    "revision": "3106cfa8caab222ff2fb",
+    "url": "/q-fontend/static/js/main.b7494012.chunk.js"
   },
   {
     "revision": "d48df73490c2073efe78",

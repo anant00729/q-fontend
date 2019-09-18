@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/q-fontend/static/css/main.e8a29fe5.chunk.css",
-    "main.js": "/q-fontend/static/js/main.5bb51777.chunk.js",
-    "main.js.map": "/q-fontend/static/js/main.5bb51777.chunk.js.map",
+    "main.css": "/q-fontend/static/css/main.4bdb0a27.chunk.css",
+    "main.js": "/q-fontend/static/js/main.b7494012.chunk.js",
+    "main.js.map": "/q-fontend/static/js/main.b7494012.chunk.js.map",
     "runtime~main.js": "/q-fontend/static/js/runtime~main.7f53f148.js",
     "runtime~main.js.map": "/q-fontend/static/js/runtime~main.7f53f148.js.map",
-    "static/js/2.905705dc.chunk.js": "/q-fontend/static/js/2.905705dc.chunk.js",
-    "static/js/2.905705dc.chunk.js.map": "/q-fontend/static/js/2.905705dc.chunk.js.map",
+    "static/js/2.674ba556.chunk.js": "/q-fontend/static/js/2.674ba556.chunk.js",
+    "static/js/2.674ba556.chunk.js.map": "/q-fontend/static/js/2.674ba556.chunk.js.map",
     "index.html": "/q-fontend/index.html",
-    "precache-manifest.76be85e863e07f30e6df5a1fd1ab7161.js": "/q-fontend/precache-manifest.76be85e863e07f30e6df5a1fd1ab7161.js",
+    "precache-manifest.a9182215f13e387fe97f699f7a6236ac.js": "/q-fontend/precache-manifest.a9182215f13e387fe97f699f7a6236ac.js",
     "service-worker.js": "/q-fontend/service-worker.js",
-    "static/css/main.e8a29fe5.chunk.css.map": "/q-fontend/static/css/main.e8a29fe5.chunk.css.map",
+    "static/css/main.4bdb0a27.chunk.css.map": "/q-fontend/static/css/main.4bdb0a27.chunk.css.map",
     "static/media/app_img.jpg": "/q-fontend/static/media/app_img.82f6de72.jpg",
     "static/media/vid.mov": "/q-fontend/static/media/vid.914bf2cc.mov"
   }
