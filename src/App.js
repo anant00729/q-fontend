@@ -1,6 +1,8 @@
 import React,{ Component } from 'react';
 import { Link } from 'react-router-dom'
 import BottomBar from './base/BottomBar'
+import Footer from './base/Footer'
+
 import Header from './base/Header'
 import HomeMenu from './menu/HomeMenu'
 import Home from './home/Home'
@@ -28,7 +30,7 @@ class App extends Component {
 
       this.handleMenuC = this.handleMenuC.bind(this)
       this.handleScroll = this.handleScroll.bind(this)
-    //this.playV = this.playV.bind(this)
+    
   }
 
 
@@ -106,7 +108,7 @@ class App extends Component {
               <div></div>
             }
             
-            
+            <Footer/>  
           
           
         </div>

@@ -21,14 +21,26 @@ import HomeVM from './HomeVM';
       
     }
     this._onItemClick = this._onItemClick.bind(this)
+    //this.playV = this.playV.bind(this)
  
   }
 
 
   _onItemClick(i){
+    
     this.props.history.push('/ADet')
     console.log('i :', i);
   }
+
+
+  componentDidMount(){
+    this.refs.vidRef.play();
+  }
+
+
+  // playV(){
+  //   this.refs.vidRef.play();
+  // }
   
 
   render() {
@@ -36,6 +48,8 @@ import HomeVM from './HomeVM';
 
     const ts = mHVM._getTopStories(times , img1, this._onItemClick)
     const i_t = mHVM._getInterestedTopics()
+    const i_p = mHVM._getIntaPosts()
+    
     const m_t = mHVM._getMoreTopics()
     const s_m = mHVM._getSideMenuItem()
 
@@ -80,8 +94,8 @@ import HomeVM from './HomeVM';
                           </div>
                           <Link href="" class="
                           
-                          mt-4
-                          inline-block bg-indigo-500 
+                            mt-4
+                            inline-block bg-indigo-500 
                             text-white px-2 py-2 uppercase tracking-wider 
                             text-xs font-semibold rounded-lg shadow-md 
                             max-w-lg
@@ -98,6 +112,7 @@ import HomeVM from './HomeVM';
 
 
 
+                
                   
 
 
@@ -107,6 +122,9 @@ import HomeVM from './HomeVM';
                       {i_t}
                     </div>
                   </div>
+
+
+                 
                   
   
 
@@ -114,7 +132,20 @@ import HomeVM from './HomeVM';
                   <div className="w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap">    
                     {m_t}
                   </div>
-                </div>
+
+                  <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-xl mt-6">Follow us on Instagram for Quonquer's daily digest</p>
+                    
+                    <div className="rounded shadow-md bg-gray-100 w-full min-w-full hor-list-nobar py-3 pl-3">    
+                      {i_p}
+                    </div>
+
+                  </div>
+
+
+              
+                  
+
+
           </div>
     )
   }

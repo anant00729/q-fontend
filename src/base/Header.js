@@ -39,7 +39,10 @@ export default class Header extends Component {
     return ( 
     
     <div 
-    className={classnames('asdasd' ,{'header-anim' : isUp !== 1})}
+
+
+    // {'header-anim' : isUp !== 1}
+    className={classnames('asdasd')}
     >
       <section className="fixed bg-white h-12 w-full top-0 flex shadow-md justify-between px-4">
               <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
@@ -48,18 +51,20 @@ export default class Header extends Component {
                     <div className="w-8 h-8">
                       <img src={app_img} className="rounded-full shadow-md"alt="asdasd"/>
                     </div>
-                    <p className="content-center text-gray-700 pl-2">Quonquer</p>
+                    <p className="content-center text-gray-700 pl-2 app-font-top">QUONQUER</p>
                   </Link>
               </div>
               <div className="w-1/3 h-full flex content-center justify-end
               flex-wrap cursor-pointer"
               onClick={this.handleMenuC}
               >
-                <Link href="" class="inline-block bg-indigo-500 
+                <Link href="" class="inline-block dark-blue
                 text-white px-2 py-2 uppercase tracking-wider 
                 text-xs font-semibold rounded-lg shadow-md 
-                 ">Join Now
+                 ">Sign Up
                 </Link>
+
+                <i className="fa fa-bell text-2xl text-gray-700 self-center pl-3"></i>
               </div>
           </section>
 

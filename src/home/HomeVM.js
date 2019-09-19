@@ -80,6 +80,54 @@ class HomeVM {
 
   }
 
+
+  _getIntaPosts(){
+    const moreTopics = []
+    for(let i = 0 ; i <  3; i++){
+
+
+      let _d = ''
+
+      if(i === 3-1){
+        _d = ( <div className="absolute top-0 w-full h-full insta-overlay text-center
+        rounded
+            shadow-md
+        ">
+      <p className="text-white m-auto h-full flex align-middle justify-center text-center">
+        <span className="align-middle justify-center text-center self-center">+300</span>
+      </p>
+    </div>);
+
+      }
+
+      
+      moreTopics.push(
+        <div className="inline-block text-sm font-semibold text-gray-700 my-2 py-2 w-1/3 pr-3">
+
+          <div className="relative cursor-pointer shadow-md bg-white
+          w-full rounded">
+            <img class="
+            rounded
+            shadow-md" src="https://instagram.fbom16-1.fna.fbcdn.net/vp/b92edc51234d678dec853272a2f7690f/5DFF3F3F/t51.2885-15/sh0.08/e35/s640x640/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20640w,https://instagram.fbom16-1.fna.fbcdn.net/vp/8b64c0c62d2decb495ec8c9e317d85e7/5E195E3F/t51.2885-15/sh0.08/e35/s750x750/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20750w,https://instagram.fbom16-1.fna.fbcdn.net/vp/ffdc3ec05564d2fc38e14178053cda26/5E013DDA/t51.2885-15/e35/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%201080w" alt="Sunset in the mountains"/>
+
+
+           {_d}
+
+            
+
+          </div>
+
+          
+        </div>
+
+        
+      )
+    }
+    return moreTopics 
+  }
+
+
+
   _getInterestedTopics(){
     const moreTopics = []
     for(let i = 0 ; i <  10; i++){

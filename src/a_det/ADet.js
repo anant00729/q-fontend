@@ -103,12 +103,24 @@ class ADet extends Component {
   
   
         </div>
-        <div className="md:w-4/5 lg:w-4/5 mx-56">
-          <p className="md:max-w-full max-w-md w-full flex justify-start py-2 text-2xl">More Topics</p>
-            <div className="w-full min-w-full hor-list pb-8 flex justify-start flex-wrap">    
-              {m_t}
-            </div>
+
+
+        <div className="px-4">
+          <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">More Topics</p>
+          <div className="w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap">    
+            {m_t}
+          </div>
         </div>
+
+
+        {/* <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl mr-20 ml-4">More Topics</p>
+              <div className="w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap ml-4">    
+                {m_t}
+          </div> */}
+
+        {/* <div className="mx-auto md:px-12 px-4 md:px-0">
+          
+        </div> */}
       </div>
     )
   }

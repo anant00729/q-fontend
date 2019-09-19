@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+
 .App {
   text-align: center;
 }
@@ -131,4 +134,31 @@
 .header-anim1{
   transform: translateY(100%);
   transition: transform 3000ms ease;
+}
+
+.insta-overlay{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.copy-right-text{
+  font-size: 0.8rem;
+}
+
+
+.app-font{
+  font-family: 'Raleway', cursive;
+}
+
+
+.app-font-top{
+  font-family: 'Raleway', cursive;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+
+.dark-blue{
+  background-color: #100D52;
+  
 }
