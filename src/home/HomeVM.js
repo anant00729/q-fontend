@@ -4,7 +4,7 @@ import React, {
 
 import classnames from 'classnames'
 import { Link } from 'react-router-dom'
-
+import share from '../images/share.png'
 
 
 
@@ -42,7 +42,17 @@ class HomeVM {
           </p>
         </div>
 
-        <i className="fa fa-bookmark text-xl text-gray-700 pr-3 pb-3 self-end align-bottom"></i>
+
+
+        
+
+
+    
+
+        
+
+        <i className="fa fa-share-alt text-xl dark-blue-text pr-6 pb-3 self-end align-bottom"></i>
+        <i className="fa fa-bookmark text-xl dark-blue-text pr-3 pb-3 self-end align-bottom"></i>
 
         <img src={img1} 
         className="w-32 object-cover h-full" 
