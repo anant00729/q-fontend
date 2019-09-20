@@ -102,6 +102,7 @@ import HomeVM from './HomeVM';
                             text-white px-2 py-2 uppercase tracking-wider 
                             text-xs font-semibold rounded-lg shadow-md 
                             max-w-lg
+                            dark-blue
                             ">Sign Up
                             </Link>  
                       </div>

@@ -64,7 +64,7 @@ export default class Header extends Component {
                  ">Sign Up
                 </Link>
 
-                <i className="fa fa-bell text-2xl text-gray-700 self-center pl-3"></i>
+                <i className="fa fa-bell text-2xl dark-blue-text self-center pl-3"></i>
               </div>
           </section>
 

@@ -8,6 +8,7 @@ import fb from '../images/facebook.png';
 import insta from '../images/instagram.png';
 import tw from '../images/twitter.png';
 import li from '../images/linkedin.png';
+import wa from '../images/whatsapp.png';
 
 class Footer extends Component {
   render() {
@@ -58,6 +59,13 @@ class Footer extends Component {
         <div className="w-10 h-10 mr-4">
           <img src={li} className="rounded-full shadow-md"alt="asdasd"/>
         </div>
+
+        <div className="w-10 h-10 mr-4">
+          <img src={wa} className="rounded-full shadow-md"alt="asdasd"/>
+        </div>
+
+
+        
       </div>
 
 
