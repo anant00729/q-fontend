@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/q-fontend/static/css/main.91de76bd.chunk.css",
-    "main.js": "/q-fontend/static/js/main.d189640f.chunk.js",
-    "main.js.map": "/q-fontend/static/js/main.d189640f.chunk.js.map",
+    "main.css": "/q-fontend/static/css/main.aaf5b93c.chunk.css",
+    "main.js": "/q-fontend/static/js/main.34f1302e.chunk.js",
+    "main.js.map": "/q-fontend/static/js/main.34f1302e.chunk.js.map",
     "runtime~main.js": "/q-fontend/static/js/runtime~main.7f53f148.js",
     "runtime~main.js.map": "/q-fontend/static/js/runtime~main.7f53f148.js.map",
-    "static/js/2.1d46e4cc.chunk.js": "/q-fontend/static/js/2.1d46e4cc.chunk.js",
-    "static/js/2.1d46e4cc.chunk.js.map": "/q-fontend/static/js/2.1d46e4cc.chunk.js.map",
+    "static/js/2.983c41eb.chunk.js": "/q-fontend/static/js/2.983c41eb.chunk.js",
+    "static/js/2.983c41eb.chunk.js.map": "/q-fontend/static/js/2.983c41eb.chunk.js.map",
     "index.html": "/q-fontend/index.html",
-    "precache-manifest.0a54ac2f951e4ba776de4f46f10301da.js": "/q-fontend/precache-manifest.0a54ac2f951e4ba776de4f46f10301da.js",
+    "precache-manifest.33a2a08f09e470ddf126585d67da28bb.js": "/q-fontend/precache-manifest.33a2a08f09e470ddf126585d67da28bb.js",
     "service-worker.js": "/q-fontend/service-worker.js",
-    "static/css/main.91de76bd.chunk.css.map": "/q-fontend/static/css/main.91de76bd.chunk.css.map",
+    "static/css/main.aaf5b93c.chunk.css.map": "/q-fontend/static/css/main.aaf5b93c.chunk.css.map",
+    "static/media/a-det-sigin-up.png": "/q-fontend/static/media/a-det-sigin-up.e9645c26.png",
     "static/media/app_img.jpg": "/q-fontend/static/media/app_img.82f6de72.jpg",
     "static/media/vid.mov": "/q-fontend/static/media/vid.914bf2cc.mov"
   }
