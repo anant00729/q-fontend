@@ -60,9 +60,9 @@ class Footer extends Component {
           <img src={li} className="rounded-full shadow-md"alt="asdasd"/>
         </div>
 
-        <div className="w-10 h-10 mr-4">
+        {/* <div className="w-10 h-10 mr-4">
           <img src={wa} className="rounded-full shadow-md"alt="asdasd"/>
-        </div>
+        </div> */}
 
 
         

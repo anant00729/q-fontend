@@ -88,7 +88,7 @@
 
 .app-main-bg{
   background-color: #fbd77c;
-   
+  height: 600px;
 }
 
 
@@ -146,6 +146,24 @@
 }
 
 
+.search-text{
+  color: #FD9205;
+  
+}
+
+
+.close-boder {
+  border-color: #100D52;
+}
+
+
+.home-menu-login-text{
+  font-size: 12px;
+}
+
+
+
+
 .app-font{
   font-family: 'Raleway', cursive;
 }
@@ -176,4 +194,11 @@
 
 .app-share{
   margin-top: -10px;
+}
+
+
+.vid-height{
+  width: 75%;
+  height: 590px;
+  object-fit: cover;
 }

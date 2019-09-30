@@ -51,18 +51,32 @@ export default class Header extends Component {
                     <div className="w-8 h-8">
                       <img src={app_img} className="rounded-full shadow-md"alt="asdasd"/>
                     </div>
-                    <p className="content-center text-gray-700 pl-2 app-font-top">QUONQUER</p>
+                    <p className="content-center text-black pl-2 app-font-top">QUONQUER</p>
                   </Link>
               </div>
               <div className="w-1/3 h-full flex content-center justify-end
               flex-wrap cursor-pointer"
               onClick={this.handleMenuC}
               >
-                <Link href="" class="inline-block dark-blue
+
+
+
+                {/* <Link href="" class="inline-block dark-blue
                 text-white px-2 py-2 uppercase tracking-wider 
                 text-xs font-semibold rounded-lg shadow-md 
                  ">Sign Up
+                </Link> */}
+
+              <i className="fa fa-share-alt text-2xl dark-blue-text self-center px-3"></i>
+
+
+                <Link href="" class="inline-block dark-blue
+                text-white px-2 py-2 uppercase tracking-wider 
+                text-xs font-semibold rounded-lg shadow-md 
+                 ">Post
                 </Link>
+
+
 
                 <i className="fa fa-bell text-2xl dark-blue-text self-center pl-3"></i>
               </div>

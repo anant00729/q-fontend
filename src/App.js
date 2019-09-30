@@ -7,6 +7,9 @@ import Header from './base/Header'
 import HomeMenu from './menu/HomeMenu'
 import Home from './home/Home'
 import ADet from './a_det/ADet';
+import Search from './search/Search';
+import HomeMenuNew from './menu/HomeMenuNew';
+import HomeCoummunity from './community/HomeCoummunity';
 
 import { HashRouter as Router, Route , Switch } from 'react-router-dom'
 
@@ -24,6 +27,7 @@ class App extends Component {
 
     this.state = {
       isMenuOpen : false,
+      isSearchOpen : true,
       position: 0,
       isUp : 0
     }
@@ -71,6 +75,15 @@ class App extends Component {
   }
 
 
+  handleSearchC(){
+    let { isSearchOpen } = this.state
+
+    this.setState({
+      isSearchOpen : !isSearchOpen
+    })
+  }
+
+
   
 
 // should start at 0
@@ -82,7 +95,7 @@ class App extends Component {
 
   render() {  
 
-    const { isMenuOpen, isUp} = this.state
+    const { isMenuOpen, isUp ,isSearchOpen } = this.state
 
     return (
       <Router>
@@ -94,6 +107,13 @@ class App extends Component {
             <div className="pt-12 mb-24">
               <Route exact path="/" component={Home}/>
               <Route exact path="/ADet" component={ADet}/>
+              <Route exact path="/Search" component={Search}/>
+              <Route exact path="/HomeMenuNew" component={HomeMenuNew}/>
+              <Route exact path="/HomeCoummunity" component={HomeCoummunity}/>
+
+              
+
+              
             </div>
 
 
@@ -107,8 +127,21 @@ class App extends Component {
               <HomeMenu handleMenuC={this.handleMenuC}/> : 
               <div></div>
             }
+
+
+
+            {/* {
+              isSearchOpen ? 
+              <Search handleMenuC={this.handleSearchC}/> : <div></div>
+              
+            } */}
+            
             
             <Footer/>  
+
+
+            
+              
           
           
         </div>

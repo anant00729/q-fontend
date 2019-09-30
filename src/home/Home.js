@@ -2,7 +2,8 @@ import React, {
   Component
 } from 'react'
 
-import vid from '../vid.mov';
+//import vid from '../vid.mov';
+import vid from '../images/home_play.mov';
 import { Link } from 'react-router-dom'
 
 import classnames from 'classnames'
@@ -59,9 +60,14 @@ import HomeVM from './HomeVM';
     
 
     return ( <div>
+
+
                 <div className="app-main-bg w-full relative">
                   <video ref="vidRef" loop src={vid} type="video/mp4" 
-                  className="my-0 mx-auto w-64"/>
+                  height="100"
+                  autoplay
+                  loop
+                  className="my-0 mx-auto w-64 vid-height"/>
                   {/* <div className="absolute bg-green-500 bottom-0 app-trans">
                     <p className=>ajskdsahk</p>
                   </div> */}
@@ -88,7 +94,7 @@ import HomeVM from './HomeVM';
                   <section>
                     <div className="mt-8 text-blue-900 mx-auto">
                       <div className="rounded shadow-md bg-gray-100 w-full min-w-ful py-4 px-2">    
-                        <h1 className=" text-xl">We invest in Emotions which are meant to be outpoured</h1>
+                        <h1 className="text-xl">We invest in Emotions which are meant to be outpoured</h1>
                         <p className=" mt-4">Never Miss Our Story</p>
                         <p className="text-sm ">Sign up for Quonquer weekly digest and get the best mental health advice from us.</p>
                         <div className="text-center shadow">
@@ -145,6 +151,8 @@ import HomeVM from './HomeVM';
 
                   </div>
 
+
+              
 
               
                   
