@@ -8,6 +8,9 @@ import { Link } from 'react-router-dom'
 
 import classnames from 'classnames'
 import HomeVM from './HomeVM';
+import Header from '../base/Header'
+import Footer from '../base/Footer'
+import BottomBar from '../base/BottomBar'
 
 
 
@@ -32,8 +35,9 @@ import HomeVM from './HomeVM';
 
   _onItemClick(i){
     
+    //this.props.history.push('/ADet')s
     this.props.history.push('/ADet')
-    console.log('i :', i);
+    
   }
 
 
@@ -61,8 +65,10 @@ import HomeVM from './HomeVM';
 
     return ( <div>
 
+              
 
-                <div className="app-main-bg w-full relative">
+
+                <div className="app-main-bg w-full relative pt-12 mb-24">
                   <video ref="vidRef" loop src={vid} type="video/mp4" 
                   height="100"
                   autoplay
@@ -154,7 +160,13 @@ import HomeVM from './HomeVM';
 
               
 
+
+                  <Header/>
+
+                  <BottomBar handleMenuC={this.handleMenuC} searchClick={this.searchClick}/>  
               
+
+                  <Footer/>
                   
 
 

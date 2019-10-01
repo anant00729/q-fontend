@@ -10,6 +10,7 @@ import fb from '../images/facebook.png';
 import insta from '../images/instagram.png';
 import tw from '../images/twitter.png';
 import li from '../images/linkedin.png';
+import srch from '../images/back.png'
 
 
   
@@ -18,27 +19,45 @@ import li from '../images/linkedin.png';
       return (
         
         <div>
-          <div className="fixed overflow-hidden w-full h-screen flex flex-col overflow-y-auto">
-                  <div className="flex-1 flex flex-col">
+          <div className="fixed overflow-hidden w-full h-screen flex flex-col overflow-y-auto bg-white">
+                  <div className="flex-1 flex flex-col mt-4">
                     
                     <div className="flex-col content-start justify-start mx-4">
                       
-                      <div className="text-center shadow rounded-lg mt-8">
-                          <input className="bg-white focus:outline-none focus:shadow-outline py-2 px-4 
-                      mt-2 block w-full appearance-none leading-normal rounded h-16 text-xl" type="email"
+                    <div className="flex w-full flex-wrap content-center">
+
+                    <Link 
+                    to="/"
+                    >
+                    <img src={srch} alt="back" className="w-6 h-6
+                    mr-3
+                    mt-3
+                    -ml-1
+                    
+                    "
+                    
+                    />
+                    </Link>
+                    
+                      
+                      <div className="text-center shadow rounded-lg flex flex-1 h-12" >
+                          <input className="bg-white focus:outline-none focus:shadow-outline py-1 px-4 
+                       block w-full appearance-none leading-normal rounded  text-lg" type="email"
                       placeholder="Search Quonquer"
   
                       />
                     </div>
+                  </div>
+
   
   
                     
   
                     <ul className="search-text m-auto self-center text-center mt-8">
-                      <li className="pt-2 text-2xl">Bookmarks</li>
-                      <li className="pt-2 text-2xl">Subscribe</li>
-                      <li className="pt-2 text-2xl">About Us</li> 
-                      <li className="pt-2 text-2xl">Dark Theme</li>  
+                      <li className="pt-2 text-lg">Bookmarks</li>
+                      <li className="pt-2 text-lg">Subscribe</li>
+                      <li className="pt-2 text-lg">About Us</li> 
+                      <li className="pt-2 text-lg">Dark Theme</li>  
                       
                     </ul>
   
@@ -57,7 +76,7 @@ import li from '../images/linkedin.png';
                         hover:bg-white hover:text-black
                         dark-blue
                         text-center
-                        text-lg
+                        search-btn-text
                         max-w-sm
                         ">Join our community </Link>
   
@@ -74,7 +93,7 @@ import li from '../images/linkedin.png';
                         hover:bg-white hover:text-black
                         dark-blue
                         text-center
-                        text-lg
+                        search-btn-text
                         max-w-sm
                         ">Private Q&A</Link>
   
@@ -150,14 +169,14 @@ import li from '../images/linkedin.png';
   
   
   
-          <div className="fixed bottom-0 w-full flex content-center justify-end mb-4 pr-4">
+          {/* <div className="fixed bottom-0 w-full flex content-center justify-end mb-4 pr-4">
             <div className="rounded-full app-logo-center-close flex items-center justify-center shadow-2xl border-2 close-boder"
                         onClick={this.handleMenuC}>
                         <Link href="" className="text-center">
                           <i className="fa fa-close text-md dark-blue-text"></i>
                         </Link>
             </div>
-          </div>
+          </div> */}
 
 
          

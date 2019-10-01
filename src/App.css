@@ -78,7 +78,7 @@
 } */
 
 .menu-transparent{
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 1);
   
 }
 
@@ -86,10 +86,6 @@
   height: 0.03rem;
 }
 
-.app-main-bg{
-  background-color: #fbd77c;
-  height: 600px;
-}
 
 
 
@@ -146,6 +142,11 @@
 }
 
 
+.search-btn-text{
+  font-size: 1rem;
+}
+
+
 .search-text{
   color: #FD9205;
   
@@ -197,8 +198,35 @@
 }
 
 
-.vid-height{
+/* .vid-height{
   width: 75%;
   height: 590px;
   object-fit: cover;
+} */
+
+
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  .vid-height{
+    width: 75%;
+    height: 590px;
+    object-fit: cover;
+  }
+
+  .app-main-bg{
+    background-color: #fbd77c;
+    height: 700px;
+  }
+  
+  
+}
+
+
+.rounded-community{
+  border-radius: .7rem;
 }
