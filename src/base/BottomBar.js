@@ -64,7 +64,7 @@ export default class BottomBar extends Component {
 
                   >
                   <Link 
-                  to="/HomeMenuNew"
+                  to="/HomeMenu"
                   href="" className="text-center mx-0 my-auto">
 
                     <i className="fa fa-bars text-xl dark-blue-text m-0"></i>

@@ -1,15 +1,13 @@
 import React,{ Component } from 'react';
-import { Link } from 'react-router-dom'
-import BottomBar from './base/BottomBar'
 import Footer from './base/Footer'
 
-import Header from './base/Header'
+
 import HomeMenu from './menu/HomeMenu'
 import Home from './home/Home'
 import ADet from './a_det/ADet';
 import Search from './search/Search';
 import HomeMenuNew from './menu/HomeMenuNew';
-import ShowTheLocation from './base/ShowTheLocation';
+
 import HomeCoummunity from './community/HomeCoummunity';
 import BottomSheet from './BottomSheet';
 
@@ -17,8 +15,6 @@ import BottomSheet from './BottomSheet';
 import { HashRouter as Router, Route , Switch } from 'react-router-dom'
 
 import './App.css';
-import PropTypes from "prop-types"
-import { withRouter } from "react-router"
 
 
 
@@ -164,31 +160,6 @@ class App extends Component {
               <Route exact path="/HomeMenu" component={HomeMenu}/>
               <Route exact path="/HomeMenuNew" component={HomeMenuNew}/>
             </div>
-
-
-            
-
-            
-            
-            
-            
-
-
-            {/* <ShowTheLocation/> */}
-
-            
-            
-
-            
-
-
-
-            
-            
-            {/* {this._showFooter()} */}
-            
-            
-
 
             
               
