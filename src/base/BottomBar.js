@@ -8,30 +8,14 @@ export default class BottomBar extends Component {
   constructor(props){
     super(props)
 
-    this.state = {isToggleOn: true, menuC : props.handleMenuC, searchClick : props.searchClick };
-
-
-    console.log('props.handleMenuSearch :', props.handleMenuSearch);
-
-    // This binding is necessary to make `this` work in the callback
-    this.handleMenuC = this.handleMenuC.bind(this)
+    this.state = {isToggleOn: true, searchClick : props.searchClick };
     this.handleMenuSearch = this.handleMenuSearch.bind(this)
-    
-    
   }
 
-  handleMenuC(){
-    const { menuC } = this.state
-    //menuC()
-  }
+  
 
   handleMenuSearch(){
-    const { searchClick } = this.state
-    console.log('this.props :', this.props);
-
-    //this.props.history.push('/ADet')
     this.props.history.push('/Search')
-    //searchClick()
   }
 
   //md:hidden

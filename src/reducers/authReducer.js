@@ -19,9 +19,7 @@ export default function(state = initialState, action) {
             token = ''
         }
 
-        console.log('isAutherized :', isAuthenticated);
-        console.log('token :', token);
-
+        
         return {
             ...state,
             isAuthenticated,

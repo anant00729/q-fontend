@@ -32,16 +32,7 @@ if(localStorage.Token){
   const res_d = {}
   res_d.token = localStorage.Token
   store.dispatch(setCurrentUser(res_d))
-  // check for the expired token
-  //const currentTime = Date.now / 1000 
-  // if(decode.exp < currentTime){
-  //   // Logout the user 
-  //   store.dispatch(logoutUser())
-  //   // clear current profile
-  //   store.dispatch(clearCurrentProfile())
-  //   // Redirect to login
-  //   window.location.href = '/login'
-  // }
+ 
 }
 
 
@@ -73,7 +64,7 @@ class App extends Component {
       location: '/'
     }
 
-      this.handleMenuC = this.handleMenuC.bind(this)
+      
       this.handleScroll = this.handleScroll.bind(this)
       this.searchClick = this.searchClick.bind(this)
       this.getLocation = this.getLocation.bind(this)
@@ -113,13 +104,7 @@ class App extends Component {
   }
 
 
-  handleMenuC(){
-    let { isMenuOpen } = this.state
-
-    this.setState({
-      isMenuOpen : !isMenuOpen
-    })
-  }
+  
 
 
   getLocation(data){
@@ -157,15 +142,7 @@ class App extends Component {
 
 
   render() {  
-
-    // const { match, location, history } = this.props
-
-    const { isMenuOpen, isUp ,isSearchOpen } = this.state
-
-
-    const path = this.props.routes
-
-    console.log('path :', path);
+   
 
     return (
       <Provider store={store}>

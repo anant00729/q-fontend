@@ -4,11 +4,11 @@ import React, {
 import { Link } from 'react-router-dom'
 import app_img from '../app_img.jpg';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import HomeMenuVM from './vm/HomeMenuVM';
+
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import fb from '../images/facebook.png';
 import google from '../images/search.png';
-import { initLogin } from '../actions/authActions'
+import { initLogin , callSocialLogin } from '../actions/authActions'
 import TextInputgroup from '../base/TextInputGroup'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
@@ -18,7 +18,7 @@ class HomeMenu extends Component {
 
   constructor(props){
     super(props)
-    this.state = {isToggleOn: true, menuC : props.handleMenuC , mHMVM : new HomeMenuVM(), 
+    this.state = {isToggleOn: true, 
       email : '',
       password : '',
       errors : {}
@@ -27,7 +27,6 @@ class HomeMenu extends Component {
 
 
   componentDidMount(){
-     console.log('this.props :', this.props);
     if(this.props.auth.isAuthenticated){
       this.props.history.push('/')
     }
@@ -40,16 +39,12 @@ class HomeMenu extends Component {
       this.props.history.push('/')
     }
     else {
-
-      console.log('nextProps :', nextProps);
       this.checkForFailedMessage(nextProps)
     }
   }
 
 
   initLogin = (e) => {
-
-    console.log('asdhjkasdk');
     e.preventDefault()
 
     
@@ -71,29 +66,20 @@ class HomeMenu extends Component {
 
     const pro = { email , password }
     this.props.initLogin(pro, this.props.history);
-
-    
   }
 
-  handleMenuC = () => {
-    const { menuC } = this.state
-    menuC()
-  }
+ 
 
 
   responseGoogle = (res) => {
-    console.log('responseGoogle');
-    const { mHMVM } = this.state
-    mHMVM.callSocialLogin(res.tokenId,1)
+    this.props.callSocialLogin(res.tokenId,1)
+    
   }
 
 
 
   responseFacebook = (res) => {
-    console.log('responseFacebook');
-    const { mHMVM } = this.state
-    mHMVM.callSocialLogin(res.accessToken,2)
- 
+    this.props.callSocialLogin(res.accessToken,2) 
   }
 
 
@@ -107,11 +93,9 @@ class HomeMenu extends Component {
 
   checkForFailedMessage = (nextProps) => {
 
-    console.log('asdhaskjh kahd khdk a');
+    
     const { failedMessage  } = nextProps.auth
-
-
-    console.log('failedMessage :', failedMessage);
+    
     if(failedMessage){
     let errors = {}
    
@@ -324,4 +308,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { initLogin })(HomeMenu)
+export default connect(mapStateToProps, { initLogin, callSocialLogin })(HomeMenu)

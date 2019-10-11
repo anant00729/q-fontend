@@ -402,7 +402,7 @@ class ADet extends Component {
 
         <Header/>
   
-        <BottomBar handleMenuC={this.handleMenuC} searchClick={this.searchClick}/>  
+        <BottomBar searchClick={this.searchClick}/>  
 
 
         <Footer/>

@@ -22,7 +22,7 @@ export default class Profile extends Component {
   
         <Header/>
   
-        <BottomBar handleMenuC={this.handleMenuC} searchClick={this.searchClick}/>  
+        <BottomBar  searchClick={this.searchClick}/>  
       </div>
     )
   }

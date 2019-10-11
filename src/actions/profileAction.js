@@ -8,7 +8,7 @@ export const initLogin = (p,history) => async dispatch => {
 
     const res_d = res.data
 
-    console.log('res :', res_d);
+  
 
     if(res_d.Status){
         // set token to localstorage

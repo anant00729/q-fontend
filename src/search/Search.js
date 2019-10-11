@@ -117,14 +117,7 @@ export default class Search extends Component {
 
 
 
-        {/* <div className="fixed bottom-0 w-full flex content-center justify-end mb-4 pr-4">
-          <div className="rounded-full app-logo-center-close flex items-center justify-center shadow-2xl border-2 close-boder"
-                      onClick={this.handleMenuC}>
-                      <Link href="" className="text-center">
-                        <i className="fa fa-close text-md dark-blue-text"></i>
-                      </Link>
-          </div>
-        </div> */}
+      
       </div>
     )
   }

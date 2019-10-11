@@ -5,11 +5,6 @@ class TextInputGroup extends Component {
 
     render(){
         const { name , label , value , placeholder, type , onChange, error } = this.props
-
-
-        console.log('error :', error);
-
-
         
         return (
             <div>

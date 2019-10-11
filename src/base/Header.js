@@ -16,15 +16,12 @@ class Header extends Component {
   constructor(props){
     super(props)
 
-    this.state = {isToggleOn: true, menuC : props.handleMenuC, isUp: props.isUp};
-    this.handleMenuC = this.handleMenuC.bind(this)
+    this.state = {isToggleOn: true, isUp: props.isUp};
+    
     
   }
 
-  handleMenuC(){
-    const { menuC } = this.state
-    menuC()
-  }
+ 
 
 
   static getDerivedStateFromProps(props, state) {
@@ -70,7 +67,7 @@ class Header extends Component {
       return  (
         <div className="w-1/3 h-full flex content-center justify-end
         flex-wrap cursor-pointer"
-        onClick={this.handleMenuC}
+        
         >
           <Link to="/BottomSheet" class="inline-block dark-blue
           text-white px-2 py-2 uppercase tracking-wider 
