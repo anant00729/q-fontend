@@ -80,14 +80,14 @@ import BottomBar from '../base/BottomBar'
                 </div>
                 <div className="md:px-12 px-4 md:px-0">
                   
-                  <div class="flex my-4 ">
+                  <div className="flex my-4 ">
                     <div className="hidden xl:text-sm xl:block xl:w-1/6 xl:px-6 pt-2">
-                      <h5 class="lg:tracking-wide lg:text-2xl">On this page</h5>
+                      <h5 className="lg:tracking-wide lg:text-2xl">On this page</h5>
                         <ul>
                          {s_m}
                         </ul>
                     </div>
-                    <div class="mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-5/6">
+                    <div className="mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-5/6">
                     <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">Top Topics</p>
                     <div className="flex flex-wrap md:hidden">
                       {ts[0]}

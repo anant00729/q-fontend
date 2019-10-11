@@ -197,12 +197,18 @@
   margin-top: -10px;
 }
 
-
-/* .vid-height{
+/* 
+.vid-height{
   width: 75%;
   height: 590px;
   object-fit: cover;
 } */
+
+.app-main-bg{
+  background-color: #fbd77c;
+  height: 700px;
+}
+
 
 
 /* On screens that are 992px or less, set the background color to blue */
@@ -218,14 +224,14 @@
     object-fit: cover;
   }
 
-  .app-main-bg{
-    background-color: #fbd77c;
-    height: 700px;
-  }
   
   
 }
 
+
+.text-field-error{
+  border-width: 1px;
+}
 
 .rounded-community{
   border-radius: .7rem;

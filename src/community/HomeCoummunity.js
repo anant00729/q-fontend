@@ -54,7 +54,7 @@ export default class HomeCoummunity extends Component {
              
          </div>
    </div>
-)
+  )
     }
 
 

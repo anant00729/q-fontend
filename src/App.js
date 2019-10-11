@@ -7,15 +7,42 @@ import Home from './home/Home'
 import ADet from './a_det/ADet';
 import Search from './search/Search';
 import HomeMenuNew from './menu/HomeMenuNew';
+import PrivateRoute from './base/PrivateRoute';
+import Profile from './profile/Profile';
 
 import HomeCoummunity from './community/HomeCoummunity';
 import BottomSheet from './BottomSheet';
 
 
 import { HashRouter as Router, Route , Switch } from 'react-router-dom'
+import store from './store'
+import { Provider } from 'react-redux'
+import setAuthToken from './utils/setAuthToken'
 
 import './App.css';
+import { setCurrentUser , } from './actions/authActions';
 
+
+// check for token 
+if(localStorage.Token){
+  //set the auth token header auth 
+  setAuthToken(localStorage.Token)
+  
+  // set user and isAuthenticated
+  const res_d = {}
+  res_d.token = localStorage.Token
+  store.dispatch(setCurrentUser(res_d))
+  // check for the expired token
+  //const currentTime = Date.now / 1000 
+  // if(decode.exp < currentTime){
+  //   // Logout the user 
+  //   store.dispatch(logoutUser())
+  //   // clear current profile
+  //   store.dispatch(clearCurrentProfile())
+  //   // Redirect to login
+  //   window.location.href = '/login'
+  // }
+}
 
 
 
@@ -141,36 +168,43 @@ class App extends Component {
     console.log('path :', path);
 
     return (
-      <Router>
-        
-
-        <div className="w-full relative h-screen w-12 absolute">
-
-
+      <Provider store={store}>
+        <Router>
           
-
-
-            <div>
-              <Route exact path="/" component={Home}/>
-              <Route exact path="/ADet" component={ADet}/>
-              <Route exact path="/Search" component={Search}/>
-              <Route exact path="/HomeMenuNew" component={HomeMenuNew}/>
-              <Route exact path="/HomeCoummunity" component={HomeCoummunity}/>
-              <Route exact path="/BottomSheet" component={BottomSheet}/>
-              <Route exact path="/HomeMenu" component={HomeMenu}/>
-              <Route exact path="/HomeMenuNew" component={HomeMenuNew}/>
-            </div>
-
+  
+          <div className="w-full relative h-screen w-12 absolute">
+  
+  
             
+  
+  
+              <div>
+                <Route exact path="/HomeMenu" component={HomeMenu}/>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/ADet" component={ADet}/>
+                <Route exact path="/Search" component={Search}/>
+                
+                <Switch>
+                  <PrivateRoute exact path="/HomeMenuNew" component={HomeMenuNew}/>
+                </Switch>
+                <Switch>
+                  <PrivateRoute exact path="/Profile" component={Profile}/>
+                </Switch>
+                <Route exact path="/HomeCoummunity" component={HomeCoummunity}/>
+                <Route exact path="/BottomSheet" component={BottomSheet}/>
+              </div>
+  
               
+                
+            
+            
+          </div>
+  
           
           
-        </div>
-
         
-        
-      
-      </Router>
+        </Router>
+      </Provider>
       // "build": "npm run build:css && react-scripts build",
 
     )

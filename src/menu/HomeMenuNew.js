@@ -2,7 +2,11 @@ import React, {
     Component
   } from 'react'
   
-  import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 
 
 import app_img from '../app_img.jpg';
@@ -11,11 +15,30 @@ import insta from '../images/instagram.png';
 import tw from '../images/twitter.png';
 import li from '../images/linkedin.png';
 import srch from '../images/back.png'
-
+import {withRouter} from 'react-router-dom'
+import { initLogout } from '../actions/authActions'
 
   
-  export default class HomeMenuNew extends Component {
+  class HomeMenuNew extends Component {
+
+
+    
+
+
+
+    logout = (e) => {
+      this.props.initLogout(this.props.history);
+      
+    }
+  
+    
+    
+
+
+
     render() {
+      let { isAuthenticated } = this.props.auth
+      let _login_option = this.checkAndShowLoginOpts(isAuthenticated)
       return (
         
         <div>
@@ -132,18 +155,7 @@ import srch from '../images/back.png'
 
 
 
-                <div className="flex  max-w-5xl w-full self-center justify-center home-menu-login-text mt-10" >
-                  <div className="text-black mr-4">
-                    <p className="ml-10">Login</p>
-                  </div>
-                  <div className="text-black mr-4 ">
-                    <p className="ml-4">Sign Up</p>
-                  </div>
-                  <div className="text-black  mr-4">
-                    <p className="ml-4 mr-10">New user?  Register</p>
-                  </div>
-                  
-              </div>
+              {_login_option}
 
 
               <div className="flex justify-center mt-10">
@@ -183,4 +195,48 @@ import srch from '../images/back.png'
         </div>
       )
     }
+
+
+    
+
+    checkAndShowLoginOpts(isAuthenticated){
+      if(isAuthenticated){
+
+        return  (
+          <div className="flex  max-w-5xl w-full self-center justify-center home-menu-login-text mt-10" >
+            <div className="text-black mr-4">
+              <p className="ml-10 cursor-pointer"
+              onClick={this.logout}
+              >Logout</p>
+            </div>
+        </div>)
+       
+      }else {
+        return (
+          <div className="flex  max-w-5xl w-full self-center justify-center home-menu-login-text mt-10" >
+            <div className="text-black mr-4">
+              <p className="ml-10 cursor-pointer">Login</p>
+            </div>
+            <div className="text-black mr-4 ">
+              <p className="ml-4 cursor-pointer">Sign Up</p>
+            </div>
+            <div className="text-black  mr-4">
+              <p className="ml-4 mr-10 cursor-pointer">New user?  Register</p>
+            </div>
+        </div>)
+      
+      }
+    }
   }
+
+
+const mapStateToProps = state => ({
+    auth : state.auth
+})
+
+HomeMenuNew.propTypes = {
+    auth : PropTypes.object.isRequired
+}
+
+
+export default connect(mapStateToProps,{initLogout})(withRouter(HomeMenuNew))

@@ -8,58 +8,130 @@ import HomeMenuVM from './vm/HomeMenuVM';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import fb from '../images/facebook.png';
 import google from '../images/search.png';
+import { initLogin } from '../actions/authActions'
+import TextInputgroup from '../base/TextInputGroup'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 
 class HomeMenu extends Component {
 
-
-  
-
-
   constructor(props){
     super(props)
-
-    this.state = {isToggleOn: true, menuC : props.handleMenuC , mHMVM : new HomeMenuVM()};
-
-    
-
-    // This binding is necessary to make `this` work in the callback
-    this.handleMenuC = this.handleMenuC.bind(this)
-    this.responseGoogle = this.responseGoogle.bind(this)
-    this.responseFacebook = this.responseFacebook.bind(this)
-    this.logout = this.logout.bind(this)
-
-    
-
+    this.state = {isToggleOn: true, menuC : props.handleMenuC , mHMVM : new HomeMenuVM(), 
+      email : '',
+      password : '',
+      errors : {}
+    };
   }
 
 
-  handleMenuC(){
+  componentDidMount(){
+     console.log('this.props :', this.props);
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push('/')
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+
+    
+    if(nextProps.auth.isAuthenticated){
+      this.props.history.push('/')
+    }
+    else {
+
+      console.log('nextProps :', nextProps);
+      this.checkForFailedMessage(nextProps)
+    }
+  }
+
+
+  initLogin = (e) => {
+
+    console.log('asdhjkasdk');
+    e.preventDefault()
+
+    
+    const {  email , password } = this.state
+    let errors = {}
+    
+   
+    if(email === ''){
+        errors.email = 'Email is required' 
+        this.setState({ errors })
+        return
+    } 
+    if(password === ''){
+        errors.password = 'Password is required' 
+        this.setState({ errors })
+        return
+    }
+
+
+    const pro = { email , password }
+    this.props.initLogin(pro, this.props.history);
+
+    
+  }
+
+  handleMenuC = () => {
     const { menuC } = this.state
     menuC()
   }
 
 
-  responseGoogle(res){
+  responseGoogle = (res) => {
+    console.log('responseGoogle');
     const { mHMVM } = this.state
     mHMVM.callSocialLogin(res.tokenId,1)
   }
 
 
-  responseFacebook(res){
+
+  responseFacebook = (res) => {
+    console.log('responseFacebook');
     const { mHMVM } = this.state
     mHMVM.callSocialLogin(res.accessToken,2)
+ 
   }
 
 
-  logout(res){
-    console.log('res :', res);
+  onChange = e => {
+    this.setState({
+        [e.target.name] : e.target.value
+    })
+  }
+
+
+
+  checkForFailedMessage = (nextProps) => {
+
+    console.log('asdhaskjh kahd khdk a');
+    const { failedMessage  } = nextProps.auth
+
+
+    console.log('failedMessage :', failedMessage);
+    if(failedMessage){
+    let errors = {}
+   
+      if(failedMessage !== ''){
+          errors.password = failedMessage
+          this.setState({ errors })
+          return
+      }
+    }
   }
 
   render() {
+
+    const {  email , password, errors } = this.state
+    
+
     return (
       <div>
         <div className="fixed overflow-hidden top-0 w-full h-screen menu-transparent flex flex-col overflow-y-auto items-center">
-                <div className="flex-1 flex flex-col justify-center text-center max-w-sm w-full">
+                <div className="flex-1 flex flex-col justify-center text-center max-w-sm w-full px-8">
                 
                   <div className="w-24 content-center mx-auto">
                         <img src={app_img} className="rounded-full shadow-md border-2 border-white-500"alt="asdasd"/>
@@ -67,52 +139,56 @@ class HomeMenu extends Component {
                   </div>
   
                   <div className="py-2 -mt-4 bg-gray-20 flex-col content-start justify-start">
-                    <p className="text-gray-700 mt-2 text-left">Email</p>
-                    <div className="text-center shadow">
-                      <input className="bg-white focus:outline-none focus:shadow-outline py-1 px-4 
-                        
-                        block w-full appearance-none leading-normal rounded  text-lg" type="email"
-                        
-                        />
 
-                        {/* <input className="bg-white focus:outline-none focus:shadow-outline py-2 px-4 
-                    mt-2 block rounded w-full appearance-none leading-normal" type="email"/> */}
+                  <form onSubmit={this.initLogin}>
+
+                  <p className="text-gray-700 mt-2 text-left">Email</p>
+                    <div className="mt-2">
+
+                    <TextInputgroup
+                        name = "email" 
+                        label = "Email"
+                        value = {email}
+                        placeholder = ""
+                        type = "email" 
+                      onChange = {this.onChange}
+                      error = { errors.email }
+                      />
                   </div>
   
                     <p className="text-gray-700 mt-2 text-left">Password</p>
-                    <div className="mt-2 text-center shadow">
-                      <input className="bg-white focus:outline-none focus:shadow-outline py-1 px-4
-                          
-                          block w-full appearance-none leading-normal rounded  text-lg" type="email"
-
-                          
-                          />
-                        {/* <input className="bg-white focus:outline-none focus:shadow-outline py-2 px-4 block rounded w-full 
-                            appearance-none leading-normal" type="password"/> */}
+                    <div className="mt-2">
+                    <TextInputgroup
+                        name = "password" 
+                        label = "Password"
+                        value = {password}
+                        placeholder = ""
+                        type = "password" 
+                        onChange = {this.onChange}
+                        error = { errors.password }
+                      />
                     </div>
                     <div className="flex mt-4">
 
-                    <Link href="" className="
-                    
-                        inline-block border-solid border border-white
-                        mx-auto
-                        mt-4
-                        text-white px-8 py-3 uppercase tracking-wider 
-                        text-xs font-semibold rounded-lg shadow-md 
-                        w-full
-                        hover:bg-white hover:text-black
-                        dark-blue
-                        text-center
-                        search-btn-text
-                        
-                        ">Login</Link>
+
+                    <input type="submit" value="Login"
+                      className="inline-block border-solid border border-white
+                      mx-auto
+                      mt-4
+                      text-white px-8 py-3 uppercase tracking-wider 
+                      text-xs font-semibold rounded-lg shadow-md 
+                      w-full
+                      hover:bg-white hover:text-black
+                      dark-blue
+                      text-center
+                      search-btn-text"
+                    />
+
                     </div>
-
-
+                  </form>
                     <div className="flex mt-1">
 
-                    <Link href="" className="
-                    
+                    <botton className="
                         inline-block border-solid border border-white
                         mx-auto
                         mt-4
@@ -123,58 +199,17 @@ class HomeMenu extends Component {
                         dark-blue
                         text-center
                         search-btn-text
+                        "
                         
-                        ">Register</Link>
+                        // onClick={this.logout}
+                        >Register</botton>
                     </div>
-
-
-  
   
                     <div className="w-full h-10 flex items-center py-10">
                       <div className="bg-white app-line text-center flex-auto rounded"></div>
                       <p className="text-white text-center px-2">OR</p>
                       <div className="bg-white app-line flex-auto rounded text-center"></div>
                     </div>
-
-
-
-                    
-
-
-                    
-  
-  
-                  {/* <div className="flex content-center justify-center
-                  flex-wrap cursor-pointer mb-12 ">
-                      <Link href="" className="inline-block border-solid border border-white
-                      
-                      h-12
-                      
-                      text-white px-2 py-2 uppercase tracking-wider 
-                      text-xs font-semibold rounded-lg shadow-md 
-                      w-full
-                     
-                      mb-4
-                      ">
-                      Login with &nbsp;  
-                      <i className="fa fa-facebook text-xl text-white m-0"></i>
-                      ACEBOOK
-                      </Link>
-                      <Link href="" className="inline-block border-solid border border-white
-                       text-white px-2 py-2 uppercase tracking-wider 
-                      text-xs font-semibold rounded-lg shadow-md 
-                      w-full
-                      
-                      h-12
-                      
-                      
-                      ">
-                        Login with &nbsp;  
-                      <i className="fa fa-google text-xl text-white m-0"></i>
-                      OOGLE
-                      </Link>
-                  </div> */}
-  
                 
               </div>
 
@@ -198,11 +233,14 @@ class HomeMenu extends Component {
                         bg-white
                         text-center
                         search-btn-text
-                        ">
+                        cursor-pointer
+                        "
+                        onClick={renderProps.onClick}
+                        >
                           <img src={google} className="rounded-full shadow-md w-8 h-8 -ml-4 p-1"alt="asdasd"/>
                         <button 
                         className="ml-3"
-                        onClick={renderProps.onClick}>
+                        >
                           Sign in with Google</button>
                         </div>
                     )}
@@ -211,7 +249,7 @@ class HomeMenu extends Component {
 
                     <FacebookLogin
                       appId="2244730898916165"
-                      autoLoad
+                      
                       callback={this.responseFacebook}
                       render={renderProps => (
                         <div className="flex
@@ -226,11 +264,14 @@ class HomeMenu extends Component {
                         bg-white
                         text-center
                         search-btn-text
-                        ">
+                        cursor-pointer
+                        "
+                        onClick={renderProps.onClick}
+                        >
                           <img src={fb} className="rounded-full shadow-md w-8 h-8"alt="asdasd"/>
                         <button 
                         className="ml-3"
-                        onClick={renderProps.onClick}>
+                        >
                           Sign in with Facebook</button>
                         </div>
                         
@@ -257,8 +298,8 @@ class HomeMenu extends Component {
 
         <div className="fixed bottom-0 w-full flex content-center justify-end mb-4 pr-4">
           <div className="rounded-full app-logo-center-close flex items-center justify-center"
-                      onClick={this.handleMenuC}>
-                      <Link href="" className="text-center">
+                      >
+                      <Link to="/" className="text-center">
                         <i className="fa fa-close text-md text-black"></i>
                       </Link>
           </div>
@@ -269,4 +310,18 @@ class HomeMenu extends Component {
 }
 
 
-export default HomeMenu
+HomeMenu.propTypes = {
+  loginUser : PropTypes.func.isRequired,
+  auth : PropTypes.object.isRequired,
+  errors : PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state) => ({
+  auth : state.auth,
+  errors : state.errors
+})
+
+
+
+export default connect(mapStateToProps, { initLogin })(HomeMenu)

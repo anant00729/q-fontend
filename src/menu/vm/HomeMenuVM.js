@@ -29,4 +29,4 @@ class HomeMenuVM {
 }
 
 
-module.exports = HomeMenuVM
+export default HomeMenuVM

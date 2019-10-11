@@ -34,10 +34,11 @@ export default class BottomBar extends Component {
     //searchClick()
   }
 
+  //md:hidden
   render() {
     return  <div>
       
-      <section className="fixed flex flex-col md:hidden h-12 bottom-0 w-full">
+      <section className="fixed flex flex-col h-12 bottom-0 w-full">
 
 
 
@@ -46,13 +47,15 @@ export default class BottomBar extends Component {
 
           <div className="bg-white h-12 w-full bottom-0 flex shadow-2xl">
                 <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
-                    <Link href="" className="text-center mx-auto">
+                    <Link 
+                    to="/"
+                    className="text-center mx-auto">
                       <i className="fa fa-home text-2xl dark-blue-text"></i>
                       <div className="dark-blue-text -mt-1 text-xs -mt-1">Home</div>
                     </Link>
                 </div>
                 <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
-                    <Link href="" 
+                    <Link 
                      to="/Search" 
                     
                     className="text-center mx-auto">
@@ -64,22 +67,22 @@ export default class BottomBar extends Component {
 
                   >
                   <Link 
-                  to="/HomeMenu"
-                  href="" className="text-center mx-0 my-auto">
+                  to="/HomeMenuNew"
+                  className="text-center mx-0 my-auto">
 
                     <i className="fa fa-bars text-xl dark-blue-text m-0"></i>
                   </Link>
                 </div>
                 <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
-                    <Link href="" className="text-center mx-auto"
-                    to="HomeCoummunity"
+                    <Link className="text-center mx-auto"
+                    to="/HomeCoummunity"
                     >
                       <i className="fa fa-comment text-xl dark-blue-text"></i>
                       <div className="dark-blue-text text-xs">Community</div>
                     </Link>
                 </div>
                 <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
-                    <Link href="" className="text-center mx-auto">
+                    <Link to="/Profile" className="text-center mx-auto">
                       <i className="fa fa-user text-2xl dark-blue-text"></i>
                       <div className="dark-blue-text -mt-1 text-xs">Profile</div>
                     </Link>
