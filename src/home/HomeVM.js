@@ -32,7 +32,6 @@ class HomeVM {
     const ts_l = []
     for(let i = 0 ; i < times ; i++){
       ts_s.push(
-
         <div 
         onClick={() => onClick(i)}
         className={classnames('cursor-pointer md:max-w-xs bg-gray-100 flex m-auto justify-between rounded overflow-hidden shadow-md' ,{'mb-4' : i !== (times) - 1})}>
@@ -41,23 +40,11 @@ class HomeVM {
           <p className="text-gray-700 text-xs">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus fugit rerum commodi, dolore
           </p>
         </div>
-
-
-
-        
-
-
-    
-
-        
-
         <i className="fa fa-share-alt text-xl dark-blue-text pr-6 pb-3 self-end align-bottom"></i>
         <i className="fa fa-bookmark text-xl dark-blue-text pr-3 pb-3 self-end align-bottom"></i>
-
         <img src={img1} 
         className="w-32 object-cover h-full" 
         alt="asdjasd"/>
-        
       </div>
       )
 

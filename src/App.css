@@ -182,6 +182,10 @@
   
 }
 
+.link-drop:hover{
+  background-color: #100D52;
+}
+
 
 .dark-blue-border{
   border-color: #100D52;
@@ -235,4 +239,13 @@
 
 .rounded-community{
   border-radius: .7rem;
+}
+
+.partition-profile{
+  width: 1px;
+}
+
+
+.very-small{
+  font-size: 14px;
 }
