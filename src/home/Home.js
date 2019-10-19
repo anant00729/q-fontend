@@ -11,6 +11,10 @@ import HomeVM from './HomeVM';
 import Header from '../base/Header'
 import Footer from '../base/Footer'
 import BottomBar from '../base/BottomBar'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { getAllArticles } from '../actions/articleActions'
+
 
 
 
@@ -41,8 +45,13 @@ import BottomBar from '../base/BottomBar'
   }
 
 
+  // componentWillMount(){
+    
+  // }
+
   componentDidMount(){
     this.refs.vidRef.play();
+    this.props.getAllArticles();
   }
 
 
@@ -53,8 +62,13 @@ import BottomBar from '../base/BottomBar'
 
   render() {
     const { times, img1 , mHVM } = this.state
+    const all_articles  = this.props.article.all_articles
 
-    const ts = mHVM._getTopStories(times , img1, this._onItemClick)
+    console.log('this.props.article :', this.props.article);
+
+    console.log('all_articles :', all_articles);
+
+    const ts = mHVM._getTopStories(all_articles, this._onItemClick)
     const i_t = mHVM._getInterestedTopics()
     const i_p = mHVM._getIntaPosts()
     
@@ -176,4 +190,15 @@ import BottomBar from '../base/BottomBar'
 }
 
 
-export default Home
+Home.propTypes = {
+  article : PropTypes.array.isRequired,
+}
+
+
+const mapStateToProps = (state) => ({
+  article : state.article,
+  
+})
+
+
+export default connect(mapStateToProps, { getAllArticles })(Home)
