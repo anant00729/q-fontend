@@ -38,9 +38,7 @@ import { getAllArticles } from '../actions/articleActions'
 
 
   _onItemClick(i){
-    
-    //this.props.history.push('/ADet')s
-    this.props.history.push('/ADet')
+    this.props.history.push({ pathname : `/ADet/${i}`, state : {ArticleId : i}})
     
   }
 

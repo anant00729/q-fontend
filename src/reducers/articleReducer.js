@@ -1,9 +1,10 @@
-import { GET_ALL_ARTICLE} from '../actions/constants'
+import { GET_ALL_ARTICLE, GET_SINGLE_ARTICLE} from '../actions/constants'
 
 
 
 const initialState = {
-    all_articles : []
+    all_articles : [],
+    single_article : {}
 }
 
 export default function(state = initialState, action) {
@@ -11,6 +12,11 @@ export default function(state = initialState, action) {
         case GET_ALL_ARTICLE: 
         state.all_articles = action.payload
         return state
+
+        case GET_SINGLE_ARTICLE: 
+        state.single_article = action.payload[0]
+        return state
+        
         default:
             return state
     }

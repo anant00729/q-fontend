@@ -12,13 +12,16 @@ import Profile from './profile/Profile';
 
 import HomeCoummunity from './community/HomeCoummunity';
 import BottomSheet from './BottomSheet';
+import AdminHome from './admin/AdminHome';
+import AdminAllArticles from './admin/AdminAllArticles';
+import AddArticles from './admin/AddArticles';
 
 
-import { HashRouter as Router, Route , Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route , Switch } from 'react-router-dom'
 import store from './store'
 import { Provider } from 'react-redux'
 import setAuthToken from './utils/setAuthToken'
-
+//import { browserHistory } from 'react-router';
 import './App.css';
 import { setCurrentUser , } from './actions/authActions';
 
@@ -158,7 +161,7 @@ class App extends Component {
               <div>
                 <Route exact path="/HomeMenu" component={HomeMenu}/>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/ADet" component={ADet}/>
+                <Route exact path="/ADet/:ArticleId" component={ADet}/>
                 <Route exact path="/Search" component={Search}/>
                 
                 <Switch>
@@ -168,7 +171,14 @@ class App extends Component {
                   <PrivateRoute exact path="/Profile" component={Profile}/>
                 </Switch>
                 <Route exact path="/HomeCoummunity" component={HomeCoummunity}/>
+                <Route exact path="/Admin" component={AdminHome}/>
+                <Route exact path="/AdminAllArticles" component={AdminAllArticles}/>
+                
                 <Route exact path="/BottomSheet" component={BottomSheet}/>
+                <Route exact path="/AddArticles" component={AddArticles}/>
+                
+
+
               </div>
   
               

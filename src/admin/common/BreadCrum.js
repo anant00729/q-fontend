@@ -1,0 +1,12 @@
+import React, { Component } from 'react'
+
+export default class BreadCrum extends Component {
+  render() {
+    
+    return (
+      <div className="bg-blue-800 p-2 shadow text-xl text-white mt-12">
+        <h3 className="font-bold pl-2">{this.props.name}</h3>
+      </div>  
+    )
+  }
+}

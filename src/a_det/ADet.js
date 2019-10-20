@@ -15,6 +15,11 @@ import search from '../images/search.png';
 import Header from '../base/Header'
 import Footer from '../base/Footer'
 import BottomBar from '../base/BottomBar'
+import { connect } from 'react-redux'
+import { FIRST_PARA, PARA, INLINE_IMG, BLOCK_IMG, POINTER, QUOTE } from '../actions/constants'
+import PropTypes from 'prop-types'
+import { getSingleArticle } from '../actions/articleActions'
+
 
 import det_sigin_up from '../images/a-det-sigin-up.png';
 import { Link } from 'react-router-dom'
@@ -24,43 +29,113 @@ class ADet extends Component {
 
   constructor(props){
     super(props)
-
+    const { ArticleId } = this.props.location.state
     this.state = {
-      mHVM : new HomeVM()
+      mHVM : new HomeVM(),
+      ArticleId
     }
-
-
-
+    
+    
   }
 
 
+  componentDidMount(){
+    const { ArticleId } = this.state
+    window.scrollTo(0, 0)
+    this.props.getSingleArticle(ArticleId)
+  }
+
+  
+
+
   render() {
+
+    const {single_article}  = this.props.article
+
+    let _s = single_article
+
+    console.log('single_article :', single_article);
+
+    let _temp = []
+
+    if(Object.keys(single_article).length !== 0){
+
+      _temp = _s.ArticleTemplate.map((_at) => {
+        switch(_at.type){
+          case  FIRST_PARA :
+          return  (
+            <p className="mt-2 text-md text-gray-900">
+                <span className="text-5xl">{_at.value[0]}</span>  
+                {_at.value}
+              </p>
+          )   
+  
+          case  PARA :
+          return  (
+            <p className="mt-2 text-md text-gray-900">
+              {_at.value}
+            </p>
+          )   
+  
+          case  QUOTE :
+          return  (
+            <div className="rounded shadow-md relative my-2">
+            <p className="mt-2 text-lg p-4 text-gray-900 italic app-font">
+              {_at.value}
+            </p>
+            <p className="absolute bottom-0 right-0 pr-1 text-sm">Click to tweet</p>
+          </div>
+          )   
+  
+  
+          case BLOCK_IMG : 
+          return (
+            <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
+          )
+  
+          case INLINE_IMG : 
+          return (
+            <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
+          )
+        
+  
+          default: return (<div> </div>)
+        }
+      })
+
+    }
+
+    
+
+    
+
+
     const { mHVM } = this.state
     const m_t = mHVM._getMoreTopics(3)
 
     return(
-      <div className="pt-12 mb-24">
+      <div className="pt-12 mb-10">
         <div className="flex justify-center flex-col">
           <div className="w-full flex justify-center">
             <div className="w-full mx-8 md:w-4/5 lg:w-4/5 flex flex-col max-w-2xl mt-4">
-              <h1 className="text-gray-700 text-3xl">Hello All</h1>
-              <h1 className="text-gray-700 text-xl">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h1>
+              <h1 className="text-gray-700 text-3xl">{_s.ArticleName}</h1>
+              <h1 className="text-gray-700 text-xl">{_s.SubTitle}</h1>
     
     
               <section className="flex my-2 flex-wrap content-center">
-                <img src="https://miro.medium.com/fit/c/96/96/1*BH3UOA8mTllBREiHhNBtaQ.jpeg" 
+                <img src={_s.MainImg}
                 className="w-12 h-12 rounded-full"
                 alt="12e21"/>
     
                 <div className="ml-2 flex flex-wrap content-center" >
-                  <div className="leading-tight text-gray-700">{"Anant S Awasthy"} 
+                  <div className="leading-tight text-gray-700">{_s.ArticleAuthorName} 
                   <br/>
-                  <span className="text-sm">{"Sep 10 · 8 min read"}</span>
+                  <span className="text-sm">{`${_s.PublishedOn} · ${_s.ReadTime}`}</span>
                   </div>
                 </div>
               </section>
     
-            <img class="w-full max-w-2xl object-cover mt-1" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
+            <img class="w-full max-w-2xl object-cover mt-1" src={_s.MainImg} alt="Sunset in the mountains"/>
   
   
             <div className="flex mt-6 max-w-2xl justify-start mb-10" >
@@ -82,105 +157,17 @@ class ADet extends Component {
               </div>
           </div>
   
+
+
+          {_temp}
   
-    
-    
-            <p className="mt-2 text-md text-gray-900">
-              <span className="text-5xl">L</span>  
-              orem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi omnis tenetur nisi consectetur ratione reprehenderit mollitia temporibus ducimus explicabo quibusdam doloremque et hic in rem, illo recusandae dicta dolor nesciunt!
-            </p>
-    
-            <div className="rounded shadow-md relative">
-              <p className="mt-2 text-lg p-4 text-gray-900 italic app-font">
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, molestias!"
-              </p>
-  
-              <p className="absolute bottom-0 right-0 pr-1 text-sm">Click to tweet</p>
-  
-            </div>
-    
-            <p className="mt-2 text-md text-gray-900">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur laudantium quo obcaecati, repellat aliquid ratione unde amet sunt libero mollitia quas expedita beatae totam harum ipsam facere cumque accusantium repudiandae possimus voluptate? Debitis doloribus, ipsam, sit alias et maiores sequi ad eum commodi repellat dicta velit voluptates. Perspiciatis iste ipsum libero quasi ut omnis nesciunt! Dolores saepe esse vitae cupiditate aut, veritatis repellendus quis quos amet qui numquam ratione illo, suscipit eius ipsa ut accusantium fugit explicabo corrupti itaque cum excepturi. Officiis fuga suscipit alias odio quas vitae reiciendis libero esse consectetur id? Accusamus voluptatum suscipit ullam. Repellat, dolorem saepe!
-            </p>
-    
-            <div className="rounded shadow-md relative">
-              <p className="mt-2 text-lg p-4 text-gray-900 italic app-font">
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, molestias!"
-              </p>
-  
-              <p className="absolute bottom-0 right-0 pr-1 text-sm">Click to tweet</p>
-  
-            </div>
-    
-    
-            <p className="mt-2 text-md text-gray-900">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur laudantium quo obcaecati, repellat aliquid ratione unde amet sunt libero mollitia quas expedita beatae totam harum ipsam facere cumque accusantium repudiandae possimus voluptate? Debitis doloribus, ipsam, sit alias et maiores sequi ad eum commodi repellat dicta velit voluptates. Perspiciatis iste ipsum libero quasi ut omnis nesciunt! Dolores saepe esse vitae cupiditate aut, veritatis repellendus quis quos amet qui numquam ratione illo, suscipit eius ipsa ut accusantium fugit explicabo corrupti itaque cum excepturi. Officiis fuga suscipit alias odio quas vitae reiciendis libero esse consectetur id? Accusamus voluptatum suscipit ullam. Repellat, dolorem saepe!
-            </p>
-    
-    
-            <div className="flex flex-wrap">
-              <div className="w-full sm:w-1/2">
-                <img class="sm:pr-2 pt-4 adet-por-img sm:h-64 object-contain" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
+            <section className="flex justify-center">
+              <div className="mt-8 text-blue-900 mx-auto">
+                  <img src={det_sigin_up} alt="asdasd" className="rounded shadow-md"/>
               </div>
-              <div className="w-full sm:w-1/2">
-                <img class="sm:pl-2 pt-4 adet-por-img sm:h-64 object-cover" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
-              </div>
-              
-            </div>
-    
-    
-            
-    
-    
-            <p className="mt-2 text-md text-gray-900">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi omnis tenetur nisi consectetur ratione reprehenderit mollitia temporibus ducimus explicabo quibusdam doloremque et hic in rem, illo recusandae dicta dolor nesciunt!
-            </p>
-    
-            <p className="mt-2 text-md text-gray-900">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur laudantium quo obcaecati, repellat aliquid ratione unde amet sunt libero mollitia quas expedita beatae totam harum ipsam facere cumque accusantium repudiandae possimus voluptate? Debitis doloribus, ipsam, sit alias et maiores sequi ad eum commodi repellat dicta velit voluptates. Perspiciatis iste ipsum libero quasi ut omnis nesciunt! Dolores saepe esse vitae cupiditate aut, veritatis repellendus quis quos amet qui numquam ratione illo, suscipit eius ipsa ut accusantium fugit explicabo corrupti itaque cum excepturi. Officiis fuga suscipit alias odio quas vitae reiciendis libero esse consectetur id? Accusamus voluptatum suscipit ullam. Repellat, dolorem saepe!
-            </p>
-    
-            <div className="rounded shadow-md relative">
-              <p className="mt-2 text-lg p-4 text-gray-900 italic app-font">
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, molestias!"
-              </p>
-  
-              <p className="absolute bottom-0 right-0 pr-1 text-sm">Click to tweet</p>
-  
-            </div>
-    
-    
-            <p className="mt-2 text-md text-gray-900">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur laudantium quo obcaecati, repellat aliquid ratione unde amet sunt libero mollitia quas expedita beatae totam harum ipsam facere cumque accusantium repudiandae possimus voluptate? Debitis doloribus, ipsam, sit alias et maiores sequi ad eum commodi repellat dicta velit voluptates. Perspiciatis iste ipsum libero quasi ut omnis nesciunt! Dolores saepe esse vitae cupiditate aut, veritatis repellendus quis quos amet qui numquam ratione illo, suscipit eius ipsa ut accusantium fugit explicabo corrupti itaque cum excepturi. Officiis fuga suscipit alias odio quas vitae reiciendis libero esse consectetur id? Accusamus voluptatum suscipit ullam. Repellat, dolorem saepe!
-            </p>
-  
-  
-            <section>
-                      <div className="mt-8 text-blue-900 mx-auto">
-                        <div className="rounded shadow-md bg-gray-100 w-full min-w-ful">    
-                          <img src={det_sigin_up} alt="asdasd" className="rounded"/>
-  
-                        </div>
-                      </div>
-                    </section>
-    
-            </div>
-  
-  
-            
-  
-            
-    
-            
-    
-    
-          </div>
-  
-  
-        
-  
-  
-          <div className="flex">
+            </section>
+
+            <div className="flex">
             <div className="flex h-20 w-full w-2/3">
               <div className="h-20 w-24 flex justify-center flex-col px-8">
                 <img src={clap} alt="sadas" className="h-6 w-6"/>
@@ -203,13 +190,16 @@ class ADet extends Component {
             <i className="fa fa-bookmark text-xl dark-blue-text pr-3 self-center align-bottom"></i>
               
             </div>
+
+
+            
   
   
   
   
           </div>
   
-  
+
           <Link href="" class="
                               m-auto
                               dark-blue
@@ -357,6 +347,21 @@ class ADet extends Component {
            
   
           </div>
+    
+            </div>
+
+            
+
+
+          </div>
+  
+  
+        
+  
+  
+        
+  
+
   
   
           <Link href="" class="
@@ -381,8 +386,8 @@ class ADet extends Component {
   
   
           <div className="px-4">
-            <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">More Topics</p>
-            <div className="w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap">    
+            <p className="py-2 text-2xl self-center wrap" >Related Topics</p>
+            <div className="mb-6 w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap md:self-center md:warp md:hor-list md:pb-8 md:mx-0 md:flex md:justify-center">    
               {m_t}
             </div>
           </div>
@@ -412,9 +417,35 @@ class ADet extends Component {
   }
 
 
-  componentDidMount() {
-    window.scrollTo(0, 0)
-  }
+
 
 }
-export default ADet
+
+
+ADet.propTypes = {
+  article : PropTypes.array.isRequired,
+}
+
+
+const mapStateToProps = (state) => ({
+  article : state.article,
+})
+
+
+
+
+
+export default connect(mapStateToProps, { getSingleArticle })(ADet)
+
+
+
+{/* <div className="flex flex-wrap">
+              <div className="w-full sm:w-1/2">
+                <img class="sm:pr-2 pt-4 adet-por-img sm:h-64 object-contain" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
+              </div>
+              <div className="w-full sm:w-1/2">
+                <img class="sm:pl-2 pt-4 adet-por-img sm:h-64 object-cover" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
+              </div>
+              
+            </div>
+     */}

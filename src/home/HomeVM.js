@@ -32,65 +32,59 @@ class HomeVM {
     let ts_l = []
 
 
-    ts_l = _a_l.map((_a)=> {
+    _a_l.forEach(_a =>{
 
-        let i = _a_l.indexOf(_a)
+      let i = _a_l.indexOf(_a)
 
+
+      ts_s.push(<div 
+        onClick={() => onClick(_a.id)}
+        className={classnames('relative max-w-lg cursor-pointer md:max-w-xs bg-gray-100 flex m-auto justify-between rounded overflow-hidden shadow-md' ,{'mb-4' : i !== (12) - 1})}>
+        <div className="p-2">
+          <p className="text-gray-700 text-xl">{_a.ArticleName}</p>
+          <p className="text-gray-700 text-xs">{_a.SubTitle}
+          </p>
+        </div>
+        <i className="fa fa-share-alt text-xl dark-blue-text pr-6 pb-3 self-end align-bottom"></i>
+        <i className="fa fa-bookmark text-xl dark-blue-text pr-3 pb-3 self-end align-bottom"></i>
+        <img src={_a.MainImg} 
+        className="w-32 object-cover relative" 
+        alt="asdjasd"/>
+      </div>)
+
+
+      let tags =  JSON.parse(_a.SearchTags)
+
+      tags = tags.map(_t=>{
+        return  (<span class="inline-block mt-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+          {_t}</span>)
+      })
+
+      ts_l.push(
+              
+        <div 
+        onClick={() => onClick(_a.id)}
+        className="cursor-pointer sm:w-1/2 md:w-1/3 lg:w-1/4 my-2 px-2">
+          <div class="rounded shadow-lg bg-white inline-block align-top">
+              <img class="w-full rounded" src={_a.MainImg}  alt="Sunset in the mountains"/>
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2 whitespace-pre-wrap">{_a.ArticleName}</div>
+              <p class="text-gray-700 text-base whitespace-pre-wrap">
+                {_a.SubTitle}
+              </p>
+            </div>
+            <div class="px-6 py-4">
+              {tags}
+            </div>
         
-
-
-        return (<div 
-          onClick={() => onClick(i)}
-          className={classnames('cursor-pointer md:max-w-xs bg-gray-100 flex m-auto justify-between rounded overflow-hidden shadow-md' ,{'mb-4' : i !== (12) - 1})}>
-          <div className="p-2">
-            <p className="text-gray-700 text-xl">{_a.ArticleName}</p>
-            <p className="text-gray-700 text-xs">{_a.ArticleAuthorName}
-            </p>
           </div>
-          <i className="fa fa-share-alt text-xl dark-blue-text pr-6 pb-3 self-end align-bottom"></i>
-          <i className="fa fa-bookmark text-xl dark-blue-text pr-3 pb-3 self-end align-bottom"></i>
-          <img src={_a.ArticleTemplate[0].value} 
-          className="w-32 object-cover h-full" 
-          alt="asdjasd"/>
-        </div>)
-    });
+        </div>
 
-    ts_s = ts_l 
+        )
+
+    })
 
     return [ts_s, ts_l]
-
-    // for(let i = 0 ; i < times ; i++){
-    //   ts_s.push(
-      
-    //   )
-
-    //   ts_l.push(
-        
-    //     <div 
-    //     onClick={() => onClick(i)}
-    //     className="cursor-pointer sm:w-1/2 md:w-1/3 lg:w-1/4 my-2 px-2">
-    //       <div class="rounded shadow-lg bg-white inline-block align-top">
-    //           <img class="w-full rounded" src={img1} alt="Sunset in the mountains"/>
-    //         <div class="px-6 py-4">
-    //           <div class="font-bold text-xl mb-2 whitespace-pre-wrap">Hello</div>
-    //           <p class="text-gray-700 text-base whitespace-pre-wrap">
-    //             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus fugit rerum commodi, dolore
-    //           </p>
-    //         </div>
-    //         <div class="px-6 py-4">
-    //           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#photography</span>
-    //           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#travel</span>
-    //           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">#winter</span>
-    //         </div>
-         
-    //       </div>
-    //     </div>
-  
-    //     )
-    // }
-
-
-    
 
   }
 
