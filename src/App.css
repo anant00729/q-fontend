@@ -249,3 +249,20 @@
 .very-small{
   font-size: 14px;
 }
+
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.upload-btn-wrapper input[type=file] {
+  cursor: pointer;
+  font-size: 32px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}

@@ -10,13 +10,15 @@ const initialState = {
 export default function(state = initialState, action) {
     switch(action.type){
         case GET_ALL_ARTICLE: 
-        state.all_articles = action.payload
-        return state
+        const s = {}
+        s.all_articles = action.payload
+        return s
 
         case GET_SINGLE_ARTICLE: 
-        state.single_article = action.payload[0]
-        return state
-        
+        let s1 = {}
+        s1.all_articles = state.payload
+        s1.single_article = action.payload[0]
+        return s1
         default:
             return state
     }

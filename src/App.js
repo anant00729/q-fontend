@@ -68,8 +68,8 @@ class App extends Component {
     }
 
       
-      this.handleScroll = this.handleScroll.bind(this)
-      this.searchClick = this.searchClick.bind(this)
+      
+      
       this.getLocation = this.getLocation.bind(this)
       this._showFooter = this._showFooter.bind(this)
       
@@ -87,24 +87,7 @@ class App extends Component {
       window.removeEventListener('scroll', this.handleScroll);
   }
 
-  handleScroll(e) {
-    let { position, isUp} = this.state
-
-
-    var st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-    if (st > position){
-        // downscroll code
-        // 2
-        isUp = 2
-    } else {
-        // upscroll code
-        // 1
-        isUp = 1
-    }
-    position = st <= 0 ? 0 : st;
-    
-    this.setState({ position, isUp });
-  }
+  
 
 
   
@@ -117,13 +100,7 @@ class App extends Component {
   }
 
 
-  searchClick(){
-    let { isSearchOpen } = this.state
 
-    this.setState({
-      isSearchOpen : !isSearchOpen
-    })
-  }
 
   _showFooter(){
     let {location} = this.state

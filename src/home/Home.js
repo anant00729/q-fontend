@@ -28,7 +28,8 @@ import { getAllArticles } from '../actions/articleActions'
     this.state = {
       times : 4,
       img1 : "https://instagram.fbom16-1.fna.fbcdn.net/vp/b92edc51234d678dec853272a2f7690f/5DFF3F3F/t51.2885-15/sh0.08/e35/s640x640/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20640w,https://instagram.fbom16-1.fna.fbcdn.net/vp/8b64c0c62d2decb495ec8c9e317d85e7/5E195E3F/t51.2885-15/sh0.08/e35/s750x750/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20750w,https://instagram.fbom16-1.fna.fbcdn.net/vp/ffdc3ec05564d2fc38e14178053cda26/5E013DDA/t51.2885-15/e35/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%201080w",
-      mHVM : new HomeVM()
+      mHVM : new HomeVM(),
+      all_articles : []
       
     }
     this._onItemClick = this._onItemClick.bind(this)
@@ -52,6 +53,16 @@ import { getAllArticles } from '../actions/articleActions'
     this.props.getAllArticles();
   }
 
+  
+
+static getDerivedStateFromProps(nextProps, prevState){
+    let { all_articles } = nextProps.article
+
+    if(all_articles!==prevState.all_articles){
+      return { all_articles};
+     }
+     else return null;
+ }
 
   // playV(){
   //   this.refs.vidRef.play();
@@ -59,8 +70,8 @@ import { getAllArticles } from '../actions/articleActions'
   
 
   render() {
-    const { times, img1 , mHVM } = this.state
-    const all_articles  = this.props.article.all_articles
+    const { times, img1 , mHVM, all_articles } = this.state
+    
 
     console.log('this.props.article :', this.props.article);
 

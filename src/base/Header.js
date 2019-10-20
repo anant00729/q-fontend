@@ -25,11 +25,11 @@ class Header extends Component {
 
 
   static getDerivedStateFromProps(props, state) {
-    if (props.isUp !== state.isUp) {
-      return {
-        isUp: props.isUp,
-      };
-    }
+    // if (props.isUp !== state.isUp) {
+    //   return {
+    //     isUp: props.isUp,
+    //   };
+    // }
     return null
   }
 

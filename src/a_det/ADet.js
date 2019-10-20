@@ -32,77 +32,91 @@ class ADet extends Component {
     const { ArticleId } = this.props.location.state
     this.state = {
       mHVM : new HomeVM(),
-      ArticleId
+      ArticleId,
+      single_article : {}
     }
-    
-    
-  }
 
-
-  componentDidMount(){
-    const { ArticleId } = this.state
+    
     window.scrollTo(0, 0)
     this.props.getSingleArticle(ArticleId)
+    
+    
   }
+
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    let { single_article } = nextProps.article
+
+    if(single_article!==prevState.single_article){
+      return { single_article};
+     }
+     else return null;
+ }
+
 
   
 
 
   render() {
 
-    const {single_article}  = this.props.article
-
+    let {single_article}  = this.state
     let _s = single_article
+
+    if(!_s){
+      _s = {}
+    }
 
     console.log('single_article :', single_article);
 
     let _temp = []
 
-    if(Object.keys(single_article).length !== 0){
-
-      _temp = _s.ArticleTemplate.map((_at) => {
-        switch(_at.type){
-          case  FIRST_PARA :
-          return  (
-            <p className="mt-2 text-md text-gray-900">
-                <span className="text-5xl">{_at.value[0]}</span>  
+    if(single_article){
+      if(Object.keys(single_article).length !== 0){
+  
+        _temp = _s.ArticleTemplate.map((_at) => {
+          switch(_at.type){
+            case  FIRST_PARA :
+            return  (
+              <p className="mt-2 text-md text-gray-900">
+                  <span className="text-5xl">{_at.value[0]}</span>  
+                  {_at.value}
+                </p>
+            )   
+    
+            case  PARA :
+            return  (
+              <p className="mt-2 text-md text-gray-900">
                 {_at.value}
               </p>
-          )   
+            )   
+    
+            case  QUOTE :
+            return  (
+              <div className="rounded shadow-md relative my-2">
+              <p className="mt-2 text-lg p-4 text-gray-900 italic app-font">
+                {_at.value}
+              </p>
+              <p className="absolute bottom-0 right-0 pr-1 text-sm">Click to tweet</p>
+            </div>
+            )   
+    
+    
+            case BLOCK_IMG : 
+            return (
+              <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
+            )
+    
+            case INLINE_IMG : 
+            return (
+              <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
+            )
+          
+    
+            default: return (<div> </div>)
+          }
+        })
   
-          case  PARA :
-          return  (
-            <p className="mt-2 text-md text-gray-900">
-              {_at.value}
-            </p>
-          )   
-  
-          case  QUOTE :
-          return  (
-            <div className="rounded shadow-md relative my-2">
-            <p className="mt-2 text-lg p-4 text-gray-900 italic app-font">
-              {_at.value}
-            </p>
-            <p className="absolute bottom-0 right-0 pr-1 text-sm">Click to tweet</p>
-          </div>
-          )   
-  
-  
-          case BLOCK_IMG : 
-          return (
-            <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
-          )
-  
-          case INLINE_IMG : 
-          return (
-            <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
-          )
-        
-  
-          default: return (<div> </div>)
-        }
-      })
-
+      }
     }
 
     
