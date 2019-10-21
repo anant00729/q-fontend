@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 
 //import vid from '../vid.mov';
-import vid from '../images/home_play.mov';
+//import vid from '../images/home_play.mov';
 import { Link } from 'react-router-dom'
 
 import classnames from 'classnames'
@@ -29,7 +29,8 @@ import { getAllArticles } from '../actions/articleActions'
       times : 4,
       img1 : "https://instagram.fbom16-1.fna.fbcdn.net/vp/b92edc51234d678dec853272a2f7690f/5DFF3F3F/t51.2885-15/sh0.08/e35/s640x640/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20640w,https://instagram.fbom16-1.fna.fbcdn.net/vp/8b64c0c62d2decb495ec8c9e317d85e7/5E195E3F/t51.2885-15/sh0.08/e35/s750x750/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20750w,https://instagram.fbom16-1.fna.fbcdn.net/vp/ffdc3ec05564d2fc38e14178053cda26/5E013DDA/t51.2885-15/e35/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%201080w",
       mHVM : new HomeVM(),
-      all_articles : []
+      all_articles : [],
+      vidRef : {}
       
     }
     this._onItemClick = this._onItemClick.bind(this)
@@ -39,24 +40,27 @@ import { getAllArticles } from '../actions/articleActions'
 
 
   _onItemClick(i){
-    this.props.history.push({ pathname : `/ADet/${i}`, state : {ArticleId : i}})
+    this.props.history.push(`/ADet`)
     
   }
 
 
   // componentWillMount(){
-    
+  //   this.refs.vidRef.play();
   // }
 
-  componentDidMount(){
-    this.refs.vidRef.play();
+  componentDidMount = async () => {
+
     this.props.getAllArticles();
+    //const resolve = await this.refs.vidRef.play();
+    //return Promise.resolve();
   }
 
   
 
 static getDerivedStateFromProps(nextProps, prevState){
     let { all_articles } = nextProps.article
+   // this.refs.vidRef.play();
 
     if(all_articles!==prevState.all_articles){
       return { all_articles};
@@ -70,7 +74,9 @@ static getDerivedStateFromProps(nextProps, prevState){
   
 
   render() {
-    const { times, img1 , mHVM, all_articles } = this.state
+    const { times, img1 , mHVM, all_articles, vidRef } = this.state
+
+    
     
 
     console.log('this.props.article :', this.props.article);
@@ -92,11 +98,11 @@ static getDerivedStateFromProps(nextProps, prevState){
 
 
                 <div className="app-main-bg w-full relative pt-12 mb-24">
-                  <video ref="vidRef" loop src={vid} type="video/mp4" 
+                  {/* <video ref="vidRef" loop src={vid} type="video/mp4" 
                   height="100"
                   autoplay
                   loop
-                  className="my-0 mx-auto w-64 vid-height"/>
+                  className="my-0 mx-auto w-64 vid-height"/> */}
                   {/* <div className="absolute bg-green-500 bottom-0 app-trans">
                     <p className=>ajskdsahk</p>
                   </div> */}

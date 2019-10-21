@@ -4,7 +4,7 @@ import axios from 'axios'
 
 export const initLogin = (p,history) => async dispatch => {
     dispatch({ type : LOADING })
-    const res = await axios.post('/auth/login', p)
+    const res = await axios.post('/api/auth/login', p)
 
     const res_d = res.data
 

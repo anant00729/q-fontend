@@ -29,7 +29,9 @@ class ADet extends Component {
 
   constructor(props){
     super(props)
-    const { ArticleId } = this.props.location.state
+
+    //console.log('this.props.location.pathname.split("/")[2] :', this.props.location.pathname.split("/")[2]);
+    const  ArticleId  = 118
     this.state = {
       mHVM : new HomeVM(),
       ArticleId,
@@ -37,8 +39,6 @@ class ADet extends Component {
     }
 
     
-    window.scrollTo(0, 0)
-    this.props.getSingleArticle(ArticleId)
     
     
   }
@@ -53,6 +53,11 @@ class ADet extends Component {
      else return null;
  }
 
+
+ componentDidMount(){
+  window.scrollTo(0, 0)
+  this.props.getSingleArticle(118)
+ }
 
   
 

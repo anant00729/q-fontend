@@ -5,7 +5,7 @@ import setAuthToken from '../utils/setAuthToken';
 
 export const initLogin = (p,history) => async dispatch => {
     //dispatch({ type : LOADING })
-    const res = await axios.post('/auth/login', p)
+    const res = await axios.post('/api/auth/login', p)
 
     const res_d = res.data
 
@@ -27,7 +27,7 @@ export const initLogin = (p,history) => async dispatch => {
 export const initLogout = (p,history) => async dispatch => {
     //dispatch({ type : LOADING })
     const req_d = { token : localStorage.Token }
-    const res = await axios.post('/auth/logout', req_d)
+    const res = await axios.post('/api/auth/logout', req_d)
     const res_d = res.data
     
 
@@ -48,7 +48,7 @@ export const initLogout = (p,history) => async dispatch => {
 
 export const initRegister = (p,history) => async dispatch => {
     //dispatch({ type : LOADING })
-    const res = await axios.post('/auth/login', p)
+    const res = await axios.post('/api/auth/login', p)
 
     const res_d = res.data
 
@@ -70,7 +70,7 @@ export const initRegister = (p,history) => async dispatch => {
 
 export const callSocialLogin = (sToken = "-1", sCode = -1) => async dispatch =>  {
     const req_d = {sToken, sCode}
-    const res = await axios.post('/auth/socialLogin', req_d)
+    const res = await axios.post('/api/auth/socialLogin', req_d)
     const res_d = res.data
 
     if(res_d.Status){

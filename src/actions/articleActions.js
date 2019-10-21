@@ -5,7 +5,7 @@ import axios from 'axios'
 
 export const getAllArticles = (p,history) => async dispatch => {
     //dispatch({ type : LOADING })
-    const res = await axios.get('/article/getAllArticles')
+    const res = await axios.get('/api/article/getAllArticles')
 
     const res_d = res.data
 
@@ -25,7 +25,7 @@ export const getAllArticles = (p,history) => async dispatch => {
 
 export const getSingleArticle = (id) => async dispatch => {
     //dispatch({ type : LOADING })
-    const res = await axios.post('/article/getSingleArticles', {id})
+    const res = await axios.post('/api/article/getSingleArticles', {id})
 
     const res_d = res.data
 

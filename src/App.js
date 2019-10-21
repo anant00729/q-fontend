@@ -138,7 +138,7 @@ class App extends Component {
               <div>
                 <Route exact path="/HomeMenu" component={HomeMenu}/>
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/ADet/:ArticleId" component={ADet}/>
+                <Route exact path="/ADet" component={ADet}/>
                 <Route exact path="/Search" component={Search}/>
                 
                 <Switch>
