@@ -14,9 +14,10 @@ import app_img from '../app_img.jpg';
 import classnames from 'classnames'
 import NotFound from '../base/NotFound'
 import PrivateRoute from '../base/PrivateRoute';
+import AdminPrivate from '../base/AdminPrivate';
 
 import {
-    R_AddArticles, R_Admin, R_AllArticles
+    R_AddArticles, R_Admin, R_AllArticles, R_AllAuthors
 } from '../actions/constants';
 
 import { Route , Switch } from 'react-router-dom'
@@ -25,6 +26,7 @@ import { Route , Switch } from 'react-router-dom'
 
 
 import { Link } from 'react-router-dom'
+import AllAuthors from './AllAuthors';
 
 class AdminMain extends Component {
 
@@ -42,6 +44,7 @@ class AdminMain extends Component {
     switch(this.props.location.pathname){
       case R_AddArticles:
       case R_AllArticles:
+      case R_AllAuthors: 
           isVisible = true
           break;
       case R_Admin:
@@ -59,11 +62,12 @@ class AdminMain extends Component {
         <div 
         className={classnames('', {'main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5' : isVisible})}>
         {isVisible ? <BreadCrum name={'Articles'}/> : null}
-          <div className={classnames('', {'w-2/3 mx-auto' : isVisible})}>
+          <div className={classnames('', {'w-full px-6' : isVisible})}>
             <Switch>
               <Route exact path={R_Admin} component={AdminLogin} />
-              <PrivateRoute exact path={R_AddArticles} component={AddArticles}/>
-              <PrivateRoute exact path={R_AllArticles} component={AllAtricles}/>
+              <AdminPrivate exact path={R_AddArticles} component={AddArticles}/>
+              <AdminPrivate exact path={R_AllArticles} component={AllAtricles}/>
+              <AdminPrivate exact path={R_AllAuthors} component={AllAuthors}/>
               <Route 
                 render={(props) =>  <NotFound {...props} data='admin' onError={this.onError}/>}/>
             </Switch>

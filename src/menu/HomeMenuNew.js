@@ -17,13 +17,13 @@ import li from '../images/linkedin.png';
 import srch from '../images/back.png'
 import {withRouter} from 'react-router-dom'
 import { initLogout } from '../actions/authActions'
+import { NOR } from '../actions/constants';
 
   
   class HomeMenuNew extends Component {
 
     logout = (e) => {
-      this.props.initLogout(this.props.history);
-      
+      this.props.initLogout(NOR);
     }
 
     render() {

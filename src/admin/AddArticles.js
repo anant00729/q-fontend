@@ -48,6 +48,10 @@ class AddArticles extends Component {
 
   
 
+  componentDidMount = () => {
+    window.scrollTo(0, 0)
+  }    
+
 
   onMainImgClick = () => {
     const { SearchTags} = this.state

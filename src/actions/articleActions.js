@@ -3,9 +3,11 @@ import axios from 'axios'
 
 
 
-export const getAllArticles = (p,history) => async dispatch => {
+export const getAllArticles = (type) => async dispatch => {
     //dispatch({ type : LOADING })
-    const res = await axios.get('/api/article/getAllArticles')
+    const req_d = {}
+    req_d.type = type
+    const res = await axios.post('/api/article/getAllArticles', req_d)
 
     const res_d = res.data
 

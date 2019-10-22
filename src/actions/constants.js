@@ -6,6 +6,7 @@ export const AUTH_FAILED = 'AUTH_FAILED'
 export const PROFILE_FAILED = 'PROFILE_FAILED'
 export const GET_ALL_ARTICLE = 'GET_ALL_ARTICLE'
 export const GET_SINGLE_ARTICLE = 'GET_SINGLE_ARTICLE'
+export const GET_ALL_AUTHORS = 'GET_ALL_AUTHORS'
 
 
 
@@ -36,6 +37,13 @@ export const R_CreatePost = '/create-post'
 export const R_Admin = '/adminn'
 export const R_AllArticles = '/adminn/admin-all-articles'
 export const R_AddArticles = '/adminn/admin-add-articles'
+export const R_AllAuthors = '/adminn/admin-all-authors'
+
+
+export const NOR = 'nor'
+export const ADMIN = 'admin'
+
+
 
 
 

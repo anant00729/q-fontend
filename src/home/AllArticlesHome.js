@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
-import { ARTICLE_ID } from '../actions/constants';
+import { ARTICLE_ID, NOR } from '../actions/constants';
 import HomeVM from './HomeVM';
-import { getAllArticles } from '../actions/articleActions'
 import {R_ADet} from '../actions/constants';
+import { getAllArticles } from '../actions/articleActions'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 //import vid from '../vid.mov';
@@ -32,7 +32,7 @@ class AllArticlesHome extends Component {
 
 
   componentDidMount = async () => {
-    this.props.getAllArticles();
+    this.props.getAllArticles(NOR);
     //const resolve = await this.refs.vidRef.play();
     //return Promise.resolve();
   }

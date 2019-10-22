@@ -5,7 +5,7 @@ import TextInputgroup from '../base/TextInputGroup'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { initLogin , callSocialLogin } from '../actions/authActions'
-import { R_AddArticles } from '../actions/constants'
+import { R_AllArticles } from '../actions/constants'
 
 
 class AdminLogin extends Component {
@@ -27,14 +27,15 @@ class AdminLogin extends Component {
 
 
   componentDidMount(){
-    if(this.props.auth.isAuthenticated){
-      this.props.history.push(R_AddArticles)
+    if(this.props.auth.isAdminAuthenticated){
+      this.props.history.push(R_AllArticles)
     }
   }
 
   componentWillReceiveProps(nextProps){
-    if(nextProps.auth.isAuthenticated){
-      this.props.history.push(R_AddArticles)
+    console.log('nextProps :', nextProps);
+    if(nextProps.auth.isAdminAuthenticated){
+      this.props.history.push(R_AllArticles)
     }
     else {
       this.checkForFailedMessage(nextProps)

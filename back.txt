@@ -1,4 +1,9 @@
-import { LOADING, SET_TOKEN, AUTH_FAILED, SET_ADMIN_TOKEN, ADMIN_TOKEN, NOR , ADMIN} from './constants'
+logout = (e) => {
+      this.props.initLogout(NOR);
+    }
+
+
+    import { LOADING, SET_TOKEN, AUTH_FAILED, SET_ADMIN_TOKEN, ADMIN_TOKEN, NOR , ADMIN} from './constants'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
 
@@ -34,13 +39,7 @@ export const initLogin = (p, type = 'nor') => async dispatch => {
 
 export const initLogout = (type) => async dispatch => {
     //dispatch({ type : LOADING })
-    let token = ''
-    if(type === NOR){
-        token = localStorage.Token
-    }else {
-        token = localStorage.Admin_Token
-    }
-    const req_d = { token }
+    const req_d = { token : localStorage.Token }
     const res = await axios.post('/api/auth/logout', req_d)
     const res_d = res.data
     
