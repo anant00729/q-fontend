@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import { R_HOME ,R_Admin  } from './actions/constants';
 import {  Route  } from 'react-router-dom'
 import './App.css';
-import AdminHome from './admin/AdminHome';
+import AdminMain from './admin/AdminMain';
 
 class RHome extends Component {
   render(){
@@ -15,7 +15,7 @@ class RHome extends Component {
         { isP ? 
         <Route path={R_HOME} component={Home} />
         :
-        <Route path={R_Admin} component={AdminHome} />
+        <Route path={R_Admin} component={AdminMain} />
       }
       </Fragment>
       

@@ -13,7 +13,7 @@ export default class AdminHome extends Component {
         <div className="flex flex-col md:flex-row bg-gray-900">
           <AdminNavSide/>
           <div className="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-          <div className="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+          
           <BreadCrum/>
         <div className="flex flex-wrap">
           <div className="w-full md:w-1/2 xl:w-1/3 p-3">
@@ -205,7 +205,7 @@ export default class AdminHome extends Component {
             {/*/Template Card*/}
           </div>
         </div>
-      </div>
+      
           </div>
         </div>
 

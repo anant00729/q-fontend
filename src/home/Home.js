@@ -19,21 +19,19 @@ import CreatePost from '../profile/CreatePost';
 
 
 class Home extends Component {
-  
+
 
   state = {
     isVisible : true
   }
 
-  
-
-  onShow = () => {
-   this.setState({isVisible : false}) 
+  onError = () => {
+    this.setState({isVisible:false})
   }
-
+  
   render() {
     const { match } = this.props
-    let isVisible = true
+    let isVisible = this.state
 
     switch(this.props.location.pathname){
       case R_Search:
@@ -43,8 +41,13 @@ class Home extends Component {
       case R_CreatePost:
           isVisible = false
           break;
-      default:
+      case '/':  
+      case R_ADet:   
+      case R_HomeCoummunity:   
           isVisible = true
+          break
+      default:
+          isVisible = false
           break;
     }
 
@@ -59,7 +62,8 @@ class Home extends Component {
                 <PrivateRoute exact path={R_HomeMenuNew} component={HomeMenuNew}/>
                 <PrivateRoute exact path={R_CreatePost} component={CreatePost}/>
                 <PrivateRoute exact path={R_Profile} component={Profile}/>
-                <Route render={(props) =>  <NotFound {...props} data='web' onShow={this.onShow}/>} />
+                <Route 
+                render={(props) =>  <NotFound {...props} data='web' onError={this.onError}/>} />
               </Switch>
 
               {isVisible ?  <Header/> : null}

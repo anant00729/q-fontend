@@ -4,7 +4,7 @@ class NotFound extends Component {
 
 
     componentDidMount(){
-        this.props.onShow()
+        this.props.onError()
     }
 
     render() {

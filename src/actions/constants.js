@@ -28,10 +28,12 @@ export const R_Search = '/article-search'
 export const R_HomeMenuNew = '/user-menu'
 export const R_Profile = '/user-profile'
 export const R_HomeCoummunity = '/home-community'
-export const R_Admin = '/adminn'
-export const R_AdminMain = '/admin-all-articles'
-export const R_AddArticles = '/admin-all-articles/admin-add-articles'
 export const R_CreatePost = '/create-post'
+
+
+export const R_Admin = '/adminn'
+export const R_AdminMain = '/adminn/admin-all-articles'
+export const R_AddArticles = '/adminn/admin-add-articles'
 
 
 
