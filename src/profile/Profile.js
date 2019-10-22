@@ -3,27 +3,24 @@ import React, { Component } from 'react'
 import clap from '../images/clap.png';
 import ans from '../images/ans_icon.png';
 import btnsave from '../images/btn_save_holo.png';
-import Header from '../base/Header'
-import Footer from '../base/Footer'
-import BottomBar from '../base/BottomBar'
 import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 
 import srch from '../images/back.png'
-import { throwStatement } from '@babel/types';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 
-export default class Profile extends Component {
 
 
-  constructor(props){
-    super(props)
+class Profile extends Component {
 
-    this.state = {
-      toggle : true
-    }
 
+  state = {
+    toggle : true
   }
+
+  
 
 
   onToggle = (val) => {
@@ -198,3 +195,20 @@ export default class Profile extends Component {
     )
   }
 }
+
+
+Profile.propTypes = {
+  loginUser : PropTypes.func.isRequired,
+  auth : PropTypes.object.isRequired,
+  errors : PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state) => ({
+  auth : state.auth,
+  errors : state.errors
+})
+
+
+
+export default connect(mapStateToProps)(Profile)

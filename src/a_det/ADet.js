@@ -12,11 +12,8 @@ import clap from '../images/clap.png';
 import pvt_m from '../images/pvt_m.png';
 import users from '../images/users.png';
 import search from '../images/search.png';
-import Header from '../base/Header'
-import Footer from '../base/Footer'
-import BottomBar from '../base/BottomBar'
 import { connect } from 'react-redux'
-import { FIRST_PARA, PARA, INLINE_IMG, BLOCK_IMG, POINTER, QUOTE } from '../actions/constants'
+import { FIRST_PARA, PARA, INLINE_IMG, BLOCK_IMG,  QUOTE } from '../actions/constants'
 import PropTypes from 'prop-types'
 import { getSingleArticle } from '../actions/articleActions'
 
@@ -29,9 +26,9 @@ class ADet extends Component {
 
   constructor(props){
     super(props)
+    const  ArticleId  = localStorage.Article_id
 
-    //console.log('this.props.location.pathname.split("/")[2] :', this.props.location.pathname.split("/")[2]);
-    const  ArticleId  = 118
+    console.log('ArticleId :', ArticleId);
     this.state = {
       mHVM : new HomeVM(),
       ArticleId,
@@ -46,18 +43,18 @@ class ADet extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState){
     let { single_article } = nextProps.article
-
     if(single_article!==prevState.single_article){
       return { single_article};
      }
      else return null;
- }
+  }
 
 
- componentDidMount(){
-  window.scrollTo(0, 0)
-  this.props.getSingleArticle(118)
- }
+  componentDidMount(){
+    window.scrollTo(0, 0)
+    const {ArticleId} = this.state
+    this.props.getSingleArticle(ArticleId)
+  }
 
   
 
@@ -133,7 +130,6 @@ class ADet extends Component {
     const m_t = mHVM._getMoreTopics(3)
 
     return(
-      <div className="pt-12 mb-10">
         <div className="flex justify-center flex-col">
           <div className="w-full flex justify-center">
             <div className="w-full mx-8 md:w-4/5 lg:w-4/5 flex flex-col max-w-2xl mt-4">
@@ -198,27 +194,11 @@ class ADet extends Component {
               </div>
             </div>
   
-  
-  
-            
-  
-  
-  
             <div className="flex h-20 w-full w-2/3 justify-end px-8">
-            <i className="fa fa-share-alt text-xl dark-blue-text pr-6 self-center align-bottom"></i>
-            <i className="fa fa-bookmark text-xl dark-blue-text pr-3 self-center align-bottom"></i>
-              
+              <i className="fa fa-share-alt text-xl dark-blue-text pr-6 self-center align-bottom"></i>
+              <i className="fa fa-bookmark text-xl dark-blue-text pr-3 self-center align-bottom"></i>
             </div>
-
-
-            
-  
-  
-  
-  
           </div>
-  
-
           <Link href="" class="
                               m-auto
                               dark-blue
@@ -229,14 +209,6 @@ class ADet extends Component {
                               w-32
                               text-center">Add Comment
                               </Link>  
-  
-  
-  
-  
-         
-  
-  
-  
   
           <div className="px-4">
             <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">Comment</p>
@@ -357,32 +329,10 @@ class ADet extends Component {
   
                 </div>
               </li>
-  
-  
-            
-  
-            </ul>
-            
-           
-  
-          </div>
-    
+              </ul>
+              </div>
             </div>
-
-            
-
-
           </div>
-  
-  
-        
-  
-  
-        
-  
-
-  
-  
           <Link href="" class="
                               m-auto
                               dark-blue
@@ -394,24 +344,12 @@ class ADet extends Component {
                               w-32
                               text-center">Show More
                               </Link>  
-         
-  
-          
-  
-          
-  
-  
-          
-  
-  
           <div className="px-4">
             <p className="py-2 text-2xl self-center wrap" >Related Topics</p>
             <div className="mb-6 w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap md:self-center md:warp md:hor-list md:pb-8 md:mx-0 md:flex md:justify-center">    
               {m_t}
             </div>
           </div>
-  
-  
           {/* <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl mr-20 ml-4">More Topics</p>
                 <div className="w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap ml-4">    
                   {m_t}
@@ -420,39 +358,18 @@ class ADet extends Component {
           {/* <div className="mx-auto md:px-12 px-4 md:px-0">
             
           </div> */}
-  
-  
         </div>
-
-        <Header/>
-  
-        <BottomBar searchClick={this.searchClick}/>  
-
-
-        <Footer/>
-
-      </div>
     )
   }
-
-
-
-
 }
-
 
 ADet.propTypes = {
   article : PropTypes.array.isRequired,
 }
 
-
 const mapStateToProps = (state) => ({
   article : state.article,
 })
-
-
-
-
 
 export default connect(mapStateToProps, { getSingleArticle })(ADet)
 

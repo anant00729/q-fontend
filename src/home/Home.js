@@ -1,203 +1,70 @@
-import React, {
-  Component
-} from 'react'
-
-//import vid from '../vid.mov';
-//import vid from '../images/home_play.mov';
-import { Link } from 'react-router-dom'
-
-import classnames from 'classnames'
-import HomeVM from './HomeVM';
+import React, {Component} from 'react'
 import Header from '../base/Header'
 import Footer from '../base/Footer'
 import BottomBar from '../base/BottomBar'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { getAllArticles } from '../actions/articleActions'
+import { Route , Switch } from 'react-router-dom'
+import NotFound from '../base/NotFound';
+
+import { R_ADet , R_Login, R_Search, R_HomeMenuNew, R_Profile, R_HomeCoummunity, R_CreatePost } from '../actions/constants';
+import PrivateRoute from '../base/PrivateRoute';
+
+import AllArticlesHome from './AllArticlesHome';
+import Login from '../menu/Login';
+import ADet from '../a_det/ADet';
+import Search from '../search/Search';
+import HomeMenuNew from '../menu/HomeMenuNew';
+import Profile from '../profile/Profile';
+import HomeCoummunity from '../community/HomeCoummunity';
+import CreatePost from '../profile/CreatePost';
 
 
+class Home extends Component {
+  
 
-
-
- class Home extends Component {
-
-
-  constructor(props){
-    super(props)
-
-    this.state = {
-      times : 4,
-      img1 : "https://instagram.fbom16-1.fna.fbcdn.net/vp/b92edc51234d678dec853272a2f7690f/5DFF3F3F/t51.2885-15/sh0.08/e35/s640x640/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20640w,https://instagram.fbom16-1.fna.fbcdn.net/vp/8b64c0c62d2decb495ec8c9e317d85e7/5E195E3F/t51.2885-15/sh0.08/e35/s750x750/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%20750w,https://instagram.fbom16-1.fna.fbcdn.net/vp/ffdc3ec05564d2fc38e14178053cda26/5E013DDA/t51.2885-15/e35/66489620_341423576747332_5179676364416259601_n.jpg?_nc_ht=instagram.fbom16-1.fna.fbcdn.net&_nc_cat=104%201080w",
-      mHVM : new HomeVM(),
-      all_articles : [],
-      vidRef : {}
-      
-    }
-    this._onItemClick = this._onItemClick.bind(this)
-    //this.playV = this.playV.bind(this)
- 
-  }
-
-
-  _onItemClick(i){
-    this.props.history.push(`/ADet`)
-    
-  }
-
-
-  // componentWillMount(){
-  //   this.refs.vidRef.play();
-  // }
-
-  componentDidMount = async () => {
-
-    this.props.getAllArticles();
-    //const resolve = await this.refs.vidRef.play();
-    //return Promise.resolve();
+  state = {
+    isVisible : true
   }
 
   
 
-static getDerivedStateFromProps(nextProps, prevState){
-    let { all_articles } = nextProps.article
-   // this.refs.vidRef.play();
-
-    if(all_articles!==prevState.all_articles){
-      return { all_articles};
-     }
-     else return null;
- }
-
-  // playV(){
-  //   this.refs.vidRef.play();
-  // }
-  
+  onShow = () => {
+   this.setState({isVisible : false}) 
+  }
 
   render() {
-    const { times, img1 , mHVM, all_articles, vidRef } = this.state
+    const { match } = this.props
+    let isVisible = true
 
-    
-    
-
-    console.log('this.props.article :', this.props.article);
-
-    console.log('all_articles :', all_articles);
-
-    const ts = mHVM._getTopStories(all_articles, this._onItemClick)
-    const i_t = mHVM._getInterestedTopics()
-    const i_p = mHVM._getIntaPosts()
-    
-    const m_t = mHVM._getMoreTopics()
-    const s_m = mHVM._getSideMenuItem()
-
-    
-
-    return ( <div>
-
-              
+    switch(this.props.location.pathname){
+      case R_Search:
+      case R_Login:
+      case R_HomeMenuNew:
+      case R_Profile:
+      case R_CreatePost:
+          isVisible = false
+          break;
+      default:
+          isVisible = true
+          break;
+    }
 
 
-                <div className="app-main-bg w-full relative pt-12 mb-24">
-                  {/* <video ref="vidRef" loop src={vid} type="video/mp4" 
-                  height="100"
-                  autoplay
-                  loop
-                  className="my-0 mx-auto w-64 vid-height"/> */}
-                  {/* <div className="absolute bg-green-500 bottom-0 app-trans">
-                    <p className=>ajskdsahk</p>
-                  </div> */}
-                </div>
-                <div className="md:px-12 px-4 md:px-0">
-                  
-                  <div className="flex my-4 ">
-                    <div className="hidden xl:text-sm xl:block xl:w-1/6 xl:px-6 pt-2">
-                      <h5 className="lg:tracking-wide lg:text-2xl">On this page</h5>
-                        <ul>
-                         {s_m}
-                        </ul>
-                    </div>
-                    <div className="mx-auto lg:ml-0 lg:mr-auto xl:mx-0 xl:w-5/6">
-                    <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">Top Topics</p>
-                    <div className="flex flex-wrap md:hidden">
-                      {ts[0]}
-                    </div>
-  
-                    <div className="md:flex md:flex-wrap hidden justify-start">
-                      {ts[1]}
-                    </div>
+    return ( <div className="w-full relative h-screen w-12 absolute">
+              <Switch>
+                <Route path={ match.url } exact component={AllArticlesHome} />
+                <Route exact path={ R_Login } component={Login}/>
+                <Route exact path={ R_ADet} component={ADet}/>
+                <Route exact path={R_Search} component={Search}/>
+                <Route exact path={R_HomeCoummunity} component={HomeCoummunity}/>
+                <PrivateRoute exact path={R_HomeMenuNew} component={HomeMenuNew}/>
+                <PrivateRoute exact path={R_CreatePost} component={CreatePost}/>
+                <PrivateRoute exact path={R_Profile} component={Profile}/>
+                <Route render={(props) =>  <NotFound {...props} data='web' onShow={this.onShow}/>} />
+              </Switch>
 
-                  <section>
-                    <div className="mt-8 text-blue-900 mx-auto">
-                      <div className="rounded shadow-md bg-gray-100 w-full min-w-ful py-4 px-2">    
-                        <h1 className="text-xl">We invest in Emotions which are meant to be outpoured</h1>
-                        <p className=" mt-4">Never Miss Our Story</p>
-                        <p className="text-sm ">Sign up for Quonquer weekly digest and get the best mental health advice from us.</p>
-                        <div className="text-center shadow">
-                          <input className="bg-white focus:outline-none focus:shadow-outline py-2 px-4 
-                            mt-2 block rounded w-full appearance-none leading-normal" type="email"/>
-                          </div>
-                          <Link href="" class="
-                          
-                            mt-4
-                            inline-block bg-indigo-500 
-                            text-white px-2 py-2 uppercase tracking-wider 
-                            text-xs font-semibold rounded-lg shadow-md 
-                            max-w-lg
-                            dark-blue
-                            ">Sign Up
-                            </Link>  
-                      </div>
-                    </div>
-                  </section>
-
-                    </div>
-                    
-                  </div>
-
-
-
-
-                
-                  
-
-
-                  <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">Topics For You</p>
-                    <div className="">
-                    <div className="rounded shadow-md bg-gray-100 w-full min-w-full hor-list-nobar overflow-x-auto whitespace-no-wrap py-3 px-2">    
-                      {i_t}
-                    </div>
-                  </div>
-
-
-                 
-                  
-  
-
-                  <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">More Topics</p>
-                  <div className="w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap">    
-                    {m_t}
-                  </div>
-
-                  <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-xl mt-6">Follow us on Instagram for Quonquer's daily digest</p>
-                    
-                    <div className="rounded shadow-md bg-gray-100 w-full min-w-full hor-list-nobar py-3 pl-3">    
-                      {i_p}
-                    </div>
-
-                  </div>
-
-
-              
-
-
-                  <Header/>
-
-                  <BottomBar searchClick={this.searchClick}/>  
-              
-
-                  <Footer/>
-                  
-
+              {isVisible ?  <Header/> : null}
+              {isVisible ?  <BottomBar/> : null}
+              {isVisible ?  <Footer/> : null}
 
           </div>
     )
@@ -205,15 +72,17 @@ static getDerivedStateFromProps(nextProps, prevState){
 }
 
 
-Home.propTypes = {
-  article : PropTypes.array.isRequired,
-}
 
 
-const mapStateToProps = (state) => ({
-  article : state.article,
-  
-})
+export default Home
 
 
-export default connect(mapStateToProps, { getAllArticles })(Home)
+
+
+
+
+{/* <Route exact path="/Admin" component={AdminHome}/>
+                <Route exact path="/AdminAllArticles" component={AdminAllArticles}/>
+
+                <Route exact path="/CreatePost" component={CreatePost}/>
+                <Route exact path="/AddArticles" component={AddArticles}/> */}

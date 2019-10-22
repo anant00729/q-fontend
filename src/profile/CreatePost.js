@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './BottomSheet.css';
-import users from './images/users.png';
+
+import users from '../images/users.png';
 
 //import { Link } from 'react-router-dom'
 import classnames from 'classnames'
 
-import srch from './images/back.png'
+import srch from '../images/back.png'
 
 
-export default class BottomSheet extends Component {
+export default class CreatePost extends Component {
   constructor(props){
     super(props)
 

@@ -21,20 +21,10 @@ import { initLogout } from '../actions/authActions'
   
   class HomeMenuNew extends Component {
 
-
-    
-
-
-
     logout = (e) => {
       this.props.initLogout(this.props.history);
       
     }
-  
-    
-    
-
-
 
     render() {
       let { isAuthenticated } = this.props.auth

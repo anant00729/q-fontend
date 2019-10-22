@@ -14,7 +14,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 
-class HomeMenu extends Component {
+class Login extends Component {
 
   constructor(props){
     super(props)
@@ -33,8 +33,6 @@ class HomeMenu extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-
-    
     if(nextProps.auth.isAuthenticated){
       this.props.history.push('/')
     }
@@ -108,10 +106,7 @@ class HomeMenu extends Component {
   }
 
   render() {
-
     const {  email , password, errors } = this.state
-    
-
     return (
       <div>
         <div className="fixed overflow-hidden top-0 w-full h-screen menu-transparent flex flex-col overflow-y-auto items-center">
@@ -271,23 +266,13 @@ class HomeMenu extends Component {
                       onLogoutSuccess={this.logout}
                     >
                     </GoogleLogout> */}
-  
-                  
-  
-  
               </div>
-              
         </div>
-
-
-
-
         <div className="fixed bottom-0 w-full flex content-center justify-end mb-4 pr-4">
-          <div className="rounded-full app-logo-center-close flex items-center justify-center"
-                      >
-                      <Link to="/" className="text-center">
-                        <i className="fa fa-close text-md text-black"></i>
-                      </Link>
+          <div className="rounded-full app-logo-center-close flex items-center justify-center">
+              <Link to="/" className="text-center">
+                <i className="fa fa-close text-md text-black"></i>
+              </Link>
           </div>
         </div>
       </div>
@@ -296,7 +281,7 @@ class HomeMenu extends Component {
 }
 
 
-HomeMenu.propTypes = {
+Login.propTypes = {
   loginUser : PropTypes.func.isRequired,
   auth : PropTypes.object.isRequired,
   errors : PropTypes.object.isRequired
@@ -310,4 +295,4 @@ const mapStateToProps = (state) => ({
 
 
 
-export default connect(mapStateToProps, { initLogin, callSocialLogin })(HomeMenu)
+export default connect(mapStateToProps, { initLogin, callSocialLogin })(Login)

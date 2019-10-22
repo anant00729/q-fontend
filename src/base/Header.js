@@ -1,48 +1,17 @@
-import React, {
-  Component
-} from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import React, {Component} from 'react'
+import { Link } from 'react-router-dom'
 import app_img from '../app_img.jpg';
-import classnames from 'classnames'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-
-
+import {R_CreatePost , R_Login} from '../actions/constants';
 
 
 class Header extends Component {
-
-
-  constructor(props){
-    super(props)
-
-    this.state = {isToggleOn: true, isUp: props.isUp};
-    
-    
-  }
-
- 
-
-
-  static getDerivedStateFromProps(props, state) {
-    // if (props.isUp !== state.isUp) {
-    //   return {
-    //     isUp: props.isUp,
-    //   };
-    // }
-    return null
-  }
-
   render() {
-    const { isUp } = this.state
     let { isAuthenticated } = this.props.auth
     let _login_option = this.checkAndShowLoginOpts(isAuthenticated)
-    
     return ( 
-    
-    <div 
-    className={classnames('asdasd')}
-    >
+    <div>
       <section className="fixed bg-white h-12 w-full top-0 flex shadow-md justify-between px-4">
               <div className="w-1/3 h-full flex content-center flex-wrap cursor-pointer">
                   <Link href="" className="text-center flex items-center">
@@ -69,7 +38,7 @@ class Header extends Component {
         flex-wrap cursor-pointer"
         
         >
-          <Link to="/BottomSheet" class="inline-block dark-blue
+          <Link to={R_CreatePost} class="inline-block dark-blue
           text-white px-2 py-2 uppercase tracking-wider 
           text-xs font-semibold rounded-lg shadow-md 
            ">Post
@@ -84,7 +53,7 @@ class Header extends Component {
         flex-wrap cursor-pointer"
         
         >
-          <Link to="/HomeMenu" class="inline-block dark-blue
+          <Link to={R_Login} class="inline-block dark-blue
           text-white px-2 py-2 uppercase tracking-wider 
           text-xs font-semibold rounded-lg shadow-md 
            ">Sign In

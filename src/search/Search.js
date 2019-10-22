@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import srch from '../images/back.png'
 
 export default class Search extends Component {
+
+  
   render() {
     return (
       

@@ -2,6 +2,8 @@ import { LOADING, SET_TOKEN, AUTH_FAILED} from './constants'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
 
+import { TOKEN } from '../actions/constants';
+
 
 export const initLogin = (p,history) => async dispatch => {
     //dispatch({ type : LOADING })
@@ -11,7 +13,7 @@ export const initLogin = (p,history) => async dispatch => {
 
     if(res_d.Status){
         // set token to localstorage
-        localStorage.setItem('Token', res_d.token)
+        localStorage.setItem(TOKEN, res_d.token)
         //history.push('/')
         dispatch(setCurrentUser(res_d))
         
@@ -32,7 +34,7 @@ export const initLogout = (p,history) => async dispatch => {
     
 
     if(res_d.Status){
-        localStorage.removeItem('Token')
+        localStorage.removeItem(TOKEN)
         setAuthToken(false)
         dispatch(setCurrentUser({}))
         
@@ -54,7 +56,7 @@ export const initRegister = (p,history) => async dispatch => {
 
     if(res_d.Status){
         // set token to localstorage
-        localStorage.setItem('Token', res_d.token)
+        localStorage.setItem(TOKEN, res_d.token)
         //history.push('/')
         dispatch(setCurrentUser(res_d))
         
@@ -75,7 +77,7 @@ export const callSocialLogin = (sToken = "-1", sCode = -1) => async dispatch => 
 
     if(res_d.Status){
         // set token to localstorage
-        localStorage.setItem('Token', res_d.token)
+        localStorage.setItem(TOKEN, res_d.token)
         //history.push('/')
         dispatch(setCurrentUser(res_d))
         

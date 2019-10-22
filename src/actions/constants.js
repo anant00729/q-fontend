@@ -7,12 +7,32 @@ export const GET_ALL_ARTICLE = 'GET_ALL_ARTICLE'
 export const GET_SINGLE_ARTICLE = 'GET_SINGLE_ARTICLE'
 
 
+
 export const FIRST_PARA = 'fpara'
 export const PARA = 'para'
 export const INLINE_IMG = 'inline-img'
 export const BLOCK_IMG = 'block-img'
 export const POINTER = 'ponter'
 export const QUOTE = 'quote'
+
+export const TOKEN = 'Token'
+export const ARTICLE_ID = 'Article_id'
+
+
+
+
+export const R_Login = '/login'
+export const R_HOME = '/'
+export const R_ADet = '/article-detail'
+export const R_Search = '/article-search'
+export const R_HomeMenuNew = '/user-menu'
+export const R_Profile = '/user-profile'
+export const R_HomeCoummunity = '/home-community'
+export const R_Admin = '/adminn'
+export const R_AdminMain = '/admin-all-articles'
+export const R_AddArticles = '/admin-all-articles/admin-add-articles'
+export const R_CreatePost = '/create-post'
+
 
 
 

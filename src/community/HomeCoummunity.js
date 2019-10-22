@@ -3,34 +3,18 @@ import React, { Component } from 'react'
 import clap from '../images/clap.png';
 import ans from '../images/ans_icon.png';
 import btnsave from '../images/btn_save_holo.png';
-import Header from '../base/Header'
-import Footer from '../base/Footer'
-import BottomBar from '../base/BottomBar'
 
 
 export default class HomeCoummunity extends Component {
   render() {
     let list = []
-
-
-
-
     for(let i= 0 ; i < 100 ; i++){
-
       list.push(<div class="cursor-pointer max-w-md rounded shadow-lg mx-4 bg-white inline-block align-top my-2 flex flex-col rounded-community">
-               
       <div class="py-4 text-blue-900">
-        
         <div class="text-xl mb-2 px-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus, quam?</div>
         <div className="bg-gray-200 app-line-height w-full">
         </div>
-
-        
-
-
       </div>
-
-
       <div className="flex max-w-5xl w-full self-center home-menu-login-text mb-6 justify-center" >
              <div className="w-1/3 text-black flex-1 text-center ">
                <div className="h-10 w-full flex justify-center px-8 items-center">
@@ -55,24 +39,11 @@ export default class HomeCoummunity extends Component {
          </div>
    </div>
   )
-    }
-
-
-    return (
-      <div className="">
-        <div className="flex justify-center flex-col items-center pt-12 mb-24">
-           {list}
-  
-        </div>
-  
-  
-        <Header/>
-  
-        <BottomBar searchClick={this.searchClick}/>  
-  
-  
-        <Footer/>
+  }
+  return (
+      <div className="flex justify-center flex-col items-center pt-12 mb-24">
+        {list}
       </div>
-    )
+  )
   }
 }

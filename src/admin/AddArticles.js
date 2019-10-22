@@ -129,19 +129,9 @@ class AddArticles extends Component {
     
 
     return (
-      <div>
-        <div>
-        <TopBar/>
-        <div className="flex flex-col md:flex-row bg-gray-900">
-        <AdminNavSide/>
-        <div className="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
-        <BreadCrum 
-        name={'Add Article'}
-        />
           <section>
-          
           <form className="w-full sm:max-w-4xl px-16 max-w-2xl mt-4 mx-auto">
-        <div className="flex flex-wrap -mx-3 mb-6">
+          <div className="flex flex-wrap -mx-3 mb-6">
           <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
               Article Name
@@ -255,11 +245,7 @@ class AddArticles extends Component {
             </div>
           </div>
           </section>
-        </div>
-        </div>
-        </div>
-        
-      </div>
+       
     )
   }
 }

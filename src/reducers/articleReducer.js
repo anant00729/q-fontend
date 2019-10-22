@@ -4,7 +4,8 @@ import { GET_ALL_ARTICLE, GET_SINGLE_ARTICLE} from '../actions/constants'
 
 const initialState = {
     all_articles : [],
-    single_article : {}
+    single_article : {},
+    isVisible : true
 }
 
 export default function(state = initialState, action) {
@@ -16,9 +17,12 @@ export default function(state = initialState, action) {
 
         case GET_SINGLE_ARTICLE: 
         let s1 = {}
-        s1.all_articles = state.payload
+        s1.all_articles = state.all_articles
         s1.single_article = action.payload[0]
         return s1
+
+        
+
         default:
             return state
     }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import AdminAllArticles from './AdminAllArticles';
+import AdminMain from './AdminMain';
 import TopBar from './common/TopBar';
 import AdminNavSide from './common/AdminNavSide';
 import BreadCrum from './common/BreadCrum';
@@ -10,9 +10,9 @@ export default class AdminHome extends Component {
     return(
       <div>
         <TopBar/>
-        <div class="flex flex-col md:flex-row bg-gray-900">
+        <div className="flex flex-col md:flex-row bg-gray-900">
           <AdminNavSide/>
-          <div class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+          <div className="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
           <div className="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
           <BreadCrum/>
         <div className="flex flex-wrap">

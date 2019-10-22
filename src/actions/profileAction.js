@@ -1,5 +1,6 @@
 import { LOADING, SET_TOKEN, FAILED} from './constants'
 import axios from 'axios'
+import { TOKEN } from '../actions/constants';
 
 
 export const initLogin = (p,history) => async dispatch => {
@@ -12,7 +13,7 @@ export const initLogin = (p,history) => async dispatch => {
 
     if(res_d.Status){
         // set token to localstorage
-        localStorage.setItem('Token', res_d.token)
+        localStorage.setItem(TOKEN, res_d.token)
         //history.push('/')
         const action = {
             type : SET_TOKEN,
