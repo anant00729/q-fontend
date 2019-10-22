@@ -34,7 +34,7 @@ export const R_CreatePost = '/create-post'
 
 
 export const R_Admin = '/adminn'
-export const R_AdminMain = '/adminn/admin-all-articles'
+export const R_AllArticles = '/adminn/admin-all-articles'
 export const R_AddArticles = '/adminn/admin-add-articles'
 
 
