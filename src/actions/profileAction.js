@@ -3,7 +3,7 @@ import axios from 'axios'
 import { TOKEN } from '../actions/constants';
 
 
-export const initLogin = (p,history) => async dispatch => {
+export const initLogin = (p) => async dispatch => {
     dispatch({ type : LOADING })
     const res = await axios.post('/api/auth/login', p)
 

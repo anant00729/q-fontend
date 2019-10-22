@@ -1,5 +1,6 @@
 export const LOADING = 'LOADING'
 export const SET_TOKEN = 'SET_TOKEN'
+export const SET_ADMIN_TOKEN = 'SET_ADMIN_TOKEN'
 export const FAILED = 'FAILED'
 export const AUTH_FAILED = 'AUTH_FAILED'
 export const PROFILE_FAILED = 'PROFILE_FAILED'
@@ -16,6 +17,7 @@ export const POINTER = 'ponter'
 export const QUOTE = 'quote'
 
 export const TOKEN = 'Token'
+export const ADMIN_TOKEN = 'Admin_Token'
 export const ARTICLE_ID = 'Article_id'
 
 

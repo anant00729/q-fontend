@@ -25,7 +25,7 @@ export const getAllArticles = (p,history) => async dispatch => {
 
 
 
-export const getSingleArticle = (id) => async dispatch => {
+export const getSingleArticle = (id = '118')  => async dispatch => {
     //dispatch({ type : LOADING })
     const res = await axios.post('/api/article/getSingleArticles', {id})
 

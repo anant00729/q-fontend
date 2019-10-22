@@ -63,7 +63,7 @@ class Login extends Component {
 
 
     const pro = { email , password }
-    this.props.initLogin(pro, this.props.history);
+    this.props.initLogin(pro, 'nor');
   }
 
  

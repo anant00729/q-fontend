@@ -11,6 +11,7 @@ import AdminLogin from './AdminLogin';
 import app_img from '../app_img.jpg';
 import classnames from 'classnames'
 import NotFound from '../base/NotFound'
+import PrivateRoute from '../base/PrivateRoute';
 
 import {
    R_HOME, R_AdminMain , R_AddArticles, R_Profile, R_Admin
@@ -58,7 +59,7 @@ class AdminMain extends Component {
           <div className={classnames('', {'w-2/3 mx-auto' : isVisible})}>
             <Switch>
               <Route exact path={R_Admin} component={AdminLogin} />
-              <Route exact path={R_AddArticles} component={AddArticles}/>
+              <PrivateRoute exact path={R_AddArticles} component={AddArticles}/>
               <Route 
                 render={(props) =>  <NotFound {...props} data='admin' onError={this.onError}/>}/>
             </Switch>

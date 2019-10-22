@@ -20,7 +20,7 @@ class TextInputGroup extends Component {
                           />
                 {
                     error ? 
-                    (<div className="text-left text-red-400 mt-1">{error}</div>) :
+                    (<div className="text-left text-red-400 mt-1 text-xs italic">{error}</div>) :
                     null
                 }
                 

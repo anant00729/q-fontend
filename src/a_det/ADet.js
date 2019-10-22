@@ -133,7 +133,7 @@ class ADet extends Component {
         <div className="flex justify-center flex-col">
           <div className="w-full flex justify-center">
             <div className="w-full mx-8 md:w-4/5 lg:w-4/5 flex flex-col max-w-2xl mt-4">
-              <h1 className="text-gray-700 text-3xl">{_s.ArticleName}</h1>
+              <h1 className="text-gray-700 text-3xl mt-16">{_s.ArticleName}</h1>
               <h1 className="text-gray-700 text-xl">{_s.SubTitle}</h1>
     
     
@@ -182,7 +182,7 @@ class ADet extends Component {
               </div>
             </section>
 
-            <div className="flex">
+            <div className="flex -mx-4">
             <div className="flex h-20 w-full w-2/3">
               <div className="h-20 w-24 flex justify-center flex-col px-8">
                 <img src={clap} alt="sadas" className="h-6 w-6"/>
@@ -210,7 +210,7 @@ class ADet extends Component {
                               text-center">Add Comment
                               </Link>  
   
-          <div className="px-4">
+          <div>
             <p className="md:max-w-full max-w-md w-full flex justify-between py-2 text-2xl">Comment</p>
             <div className="h-1 rounded dark-blue"></div>
   
@@ -345,7 +345,7 @@ class ADet extends Component {
                               text-center">Show More
                               </Link>  
           <div className="px-4">
-            <p className="py-2 text-2xl self-center wrap" >Related Topics</p>
+            <p className="py-2 text-2xl self-center wrap text-center mt-4 " >Related Topics</p>
             <div className="mb-6 w-full min-w-full hor-list pb-8 overflow-x-auto whitespace-no-wrap md:self-center md:warp md:hor-list md:pb-8 md:mx-0 md:flex md:justify-center">    
               {m_t}
             </div>

@@ -1,8 +1,91 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+
 import app_img from '../app_img.jpg';
+import TextInputgroup from '../base/TextInputGroup'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { initLogin , callSocialLogin } from '../actions/authActions'
+import { R_AddArticles } from '../actions/constants'
+
+
 class AdminLogin extends Component {
+
+
+  state = {
+    isToggleOn: true, 
+    email : '',
+    password : '',
+    errors : {}
+  };
+
+
+  onChange = e => {
+    this.setState({
+        [e.target.name] : e.target.value
+    })
+  }
+
+
+  componentDidMount(){
+    if(this.props.auth.isAuthenticated){
+      this.props.history.push(R_AddArticles)
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.auth.isAuthenticated){
+      this.props.history.push(R_AddArticles)
+    }
+    else {
+      this.checkForFailedMessage(nextProps)
+    }
+  }
+
+
+  checkForFailedMessage = (nextProps) => {
+
+    
+    const { failedMessage  } = nextProps.auth
+    
+    if(failedMessage){
+    let errors = {}
+   
+      if(failedMessage !== ''){
+          errors.password = failedMessage
+          this.setState({ errors })
+          return
+      }
+    }
+  }
+
+  initLogin = (e) => {
+    e.preventDefault()
+
+    
+    const {  email , password } = this.state
+    let errors = {}
+    
+   
+    if(email === ''){
+        errors.email = 'Email is required' 
+        this.setState({ errors })
+        return
+    } 
+    if(password === ''){
+        errors.password = 'Password is required' 
+        this.setState({ errors })
+        return
+    }
+
+
+    const pro = { email , password }
+    this.props.initLogin(pro, 'admin');
+  }
+
+
   render() {
+
+    const {  email , password, errors } = this.state
     return (
       <div className="w-full h-screen flex justify-center flex-col bg-gray-900">
 
@@ -11,24 +94,44 @@ class AdminLogin extends Component {
         <p className="text-gray-500 mt-1 text-md text-center my-8">Quonquer Admin</p>
       </div>
 
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 self-center admin-form-width" >
+      <form 
+      onSubmit={this.initLogin}
+      className="bg-white shadow-md rounded px-8 pt-6 pb-8 self-center admin-form-width" >
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
             Username
           </label>
-          <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+          <TextInputgroup
+              name = "email" 
+              label = "Email"
+              value = {email}
+              placeholder = ""
+              type = "email" 
+            onChange = {this.onChange}
+            error = { errors.email }
+            />
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
-          <input className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
-          <p className="text-red-500 text-xs italic">Please choose a password.</p>
+          <TextInputgroup
+            name = "password" 
+            label = "Password"
+            value = {password}
+            placeholder = ""
+            type = "password" 
+            onChange = {this.onChange}
+            error = { errors.password }
+          />
         </div>
         <div className="flex items-center justify-between">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-            Sign In
-          </button>
+
+        <input type="submit" value="Login"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    />
+
+          
           {/* <Link className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" >
             Forgot Password?
           </Link> */}
@@ -42,4 +145,21 @@ class AdminLogin extends Component {
   }
 }
 
-export default AdminLogin
+
+AdminLogin.propTypes = {
+  loginUser : PropTypes.func.isRequired,
+  auth : PropTypes.object.isRequired,
+  errors : PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state) => ({
+  auth : state.auth,
+  errors : state.errors
+})
+
+
+
+export default connect(mapStateToProps, { initLogin, callSocialLogin })(AdminLogin)
+
+
