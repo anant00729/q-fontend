@@ -12,8 +12,10 @@ class AddAuthors extends Component {
   state = {
     name : '',
     email : '',
+    password : '',
     picture : null,
-    errors : {}
+    errors : {},
+    x : -1
   };
 
 
@@ -24,11 +26,24 @@ class AddAuthors extends Component {
   }
 
 
+  //  go = () => {
+  //    let {x} = this.state
+  //    x += 5 
+  //   if (x <= 100) {
+  //       setTimeout(() => this.go(), 100);
+  //       console.log('x :', x);
+  //       this.setState({x})
+  //   }else {
+  //     this.setState({x : -1})
+  //   }
+  // }
+
   addAuthor = (e) => {
     e.preventDefault()
-
+    // this.go();
+    // return
     
-    const {  email , name, picture } = this.state
+    const {  email , name, picture , password} = this.state
     let errors = {}
     
     if(name === ''){
@@ -42,6 +57,12 @@ class AddAuthors extends Component {
         this.setState({ errors })
         return
     } 
+
+    if(password === ''){
+      errors.password = 'Password is required' 
+      this.setState({ errors })
+      return
+    } 
     
 
     if(picture === null){
@@ -50,6 +71,8 @@ class AddAuthors extends Component {
       return
     }
     
+
+    const req_d = { email , name, password , picture}
 
 
     console.log('DONE');
@@ -82,7 +105,9 @@ class AddAuthors extends Component {
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               );
 
-              console.log('object :', d);
+              console.log('d :', d);
+
+              this.setState({x : d})
               // Clear percentage
               //setTimeout(() => setUploadPercentage(0), 10000);
             }
@@ -94,14 +119,14 @@ class AddAuthors extends Component {
           if(res_d.Status){
             let errors = {}
             const img  = await generateBase64FromImage(files[0])
-            this.setState({ picture: img, errors });
+            this.setState({ picture: img, errors, x : -1 });
           }
 
 
 
-          // for(let f of files){
-          //   b64.push(await generateBase64FromImage(f)) 
-          // }
+          for(let f of files){
+            b64.push(await generateBase64FromImage(f)) 
+          }
           
         } catch (error) {
           let errors = {}
@@ -119,9 +144,9 @@ class AddAuthors extends Component {
 
   render() {
 
-    let {name , email , picture , errors} = this.state
+    let {name , email , picture , errors , password, x} = this.state
 
-    console.log('errors :', errors);
+    
     return (
       <div>
         <form 
@@ -144,7 +169,7 @@ class AddAuthors extends Component {
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
-                Email
+                Emaill
               </label>
               <InputTextAdmin
                         name = "email" 
@@ -156,10 +181,25 @@ class AddAuthors extends Component {
                       error = { errors.email }
                       />
             </div>
+            
           </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full px-3">
-            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
+          <div className="w-full md:w-1/2 pr-3 ">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-first-name">
+                Password
+              </label>
+              <InputTextAdmin
+                        name = "password" 
+                        label = "Password"
+                        value = {password}
+                        placeholder = ""
+                        type = "password" 
+                      onChange = {this.onChange}
+                      error = { errors.password }
+                      />
+            </div>
+          <div className="flex flex-wrap -mx-3 mb-3">
+          <div className="px-3 mt-2">
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold my-2" htmlFor="grid-password">
               Main Image
             </label>
 
@@ -173,25 +213,42 @@ class AddAuthors extends Component {
 
 
             {picture ? 
-            <img 
-            className="rounded shadow-md h-48 mt-2"
-            src={picture} alt={(new Date()).getTime()}/>
+           <div className="
+            
+            relative cursor-pointer shadow-md bg-white
+            rounded">
+             <img className="
+             rounded
+             h-48
+             shadow-md" 
+             src={picture} alt={(new Date()).getTime()}
+             />
+               {x === -1 ? null :
+               <div className="absolute w-full top-0 h-48 insta-overlay text-center rounded shadow-md">
+               <p className="text-white m-auto h-48 flex align-middle justify-center text-center">
+                 <span className="align-middle w-full justify-center text-center self-center">{x}%</span>
+               </p>
+             </div>
+               }
+           </div>
             
             : null}
             {errors.picture ? <p className="text-gray-600 text-xs italic text-red-500">{errors.picture}</p> : null}
           </div>
+          
+
         </div>
         <input type="submit" value="Submit"
                       className="inline-block border-solid border border-white
                       mx-auto
-                      mt-4
-                      text-white px-8 py-3 uppercase tracking-wider 
+                      text-white px-8 py-3 tracking-wider 
                       font-semibold rounded-lg shadow-md 
                       w-32
+                      text-sm
                       hover:bg-gray-900
                       bg-gray-800
                       text-center
-                      search-btn-text"
+                      "
                     />
 
 

@@ -64,7 +64,7 @@ class AdminMain extends Component {
         <div 
         className={classnames('', {'main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5' : isVisible})}>
         {isVisible ? <BreadCrum name={'Articles'}/> : null}
-          <div className={classnames('', {'w-full px-6' : isVisible})}>
+          <div className={classnames('', {'w-full px-6 mt-32' : isVisible})}>
             <Switch>
               <Route exact path={R_Admin} component={AdminLogin} />
               <AdminPrivate exact path={R_AddArticles} component={AddArticles}/>
@@ -75,6 +75,7 @@ class AdminMain extends Component {
                 render={(props) =>  <NotFound {...props} data='admin' onError={this.onError}/>}/>
             </Switch>
           </div>
+          
         </div>
         </div>
       </div>          

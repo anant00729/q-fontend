@@ -103,14 +103,11 @@ class HomeVM {
       let _d = ''
 
       if(i === 3-1){
-        _d = ( <div className="absolute top-0 w-full h-full insta-overlay text-center
-        rounded
-            shadow-md
-        ">
-      <p className="text-white m-auto h-full flex align-middle justify-center text-center">
-        <span className="align-middle justify-center text-center self-center">+300</span>
-      </p>
-    </div>);
+        _d = ( <div className="absolute top-0 w-full h-full insta-overlay text-center rounded shadow-md">
+                <p className="text-white m-auto h-full flex align-middle justify-center text-center">
+                  <span className="align-middle justify-center text-center self-center">+300</span>
+                </p>
+              </div>);
 
       }
 
