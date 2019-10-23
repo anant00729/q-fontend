@@ -3,6 +3,7 @@ import InputTextAdmin from './common/InputTextAdmin';
 import FilePicker from './common/FilePicker';
 import { generateBase64FromImage } from '../utils/image';
 import axios from 'axios';
+import {BASE_URL} from '../actions/constants';
 
 
 class AddAuthors extends Component {
@@ -85,15 +86,19 @@ class AddAuthors extends Component {
           });
 
 
-          console.log('res.data :', res.data);
+          let res_d = res.data
+          console.log('res_d :', res_d);  
+          if(res_d.Status){
+            let errors = {}
+            this.setState({ picture: res_d.imgUrl, errors });
+          }
 
 
 
           // for(let f of files){
           //   b64.push(await generateBase64FromImage(f)) 
           // }
-          // let errors = {}
-          // this.setState({ picture: b64, errors });
+          
         } catch (error) {
           let errors = {}
           errors.picture = error
@@ -163,7 +168,7 @@ class AddAuthors extends Component {
               />
 
 
-            {picture ? <img src={picture} className="rounded shadow-md h-48 mt-2"alt="asdasd"/> : null}
+            {picture ? <img key={(new Date()).getTime()} src={picture} className="rounded shadow-md h-48 mt-2"alt="asdasd"/> : null}
             {errors.picture ? <p className="text-gray-600 text-xs italic text-red-500">{errors.picture}</p> : null}
           </div>
         </div>

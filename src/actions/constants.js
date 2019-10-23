@@ -41,6 +41,8 @@ export const R_AllAuthors = '/adminn/admin-all-authors'
 export const R_AddAuthor = '/adminn/admin-add-author'
 
 
+export const BASE_URL = "http://localhost:3001"
+
 export const NOR = 'nor'
 export const ADMIN = 'admin'
 
