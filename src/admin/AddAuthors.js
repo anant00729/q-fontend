@@ -3,8 +3,8 @@ import InputTextAdmin from './common/InputTextAdmin';
 import FilePicker from './common/FilePicker';
 import { generateBase64FromImage } from '../utils/image';
 import axios from 'axios';
-import { getAuthorsCount } from '../actions/authorActions';
-import {BASE_URL} from '../actions/constants';
+import { getAuthorsCount, registerUser } from '../actions/authorActions';
+import {BASE_URL, R_AllAuthors} from '../actions/constants';
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -18,9 +18,11 @@ class AddAuthors extends Component {
     email : '',
     password : '',
     picture : null,
+    picturePath : null,
     errors : {},
     x : -1,
-    author_count : -1
+    next_author_id : -1,
+    is_author_created : false
   };
 
 
@@ -35,9 +37,13 @@ class AddAuthors extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState){
-    let { author_count } = nextProps.authors
-    if(author_count!==prevState.author_count){
-      return { author_count};
+    let { next_author_id, is_author_created } = nextProps.authors
+    if(next_author_id!==prevState.next_author_id){
+      return { next_author_id};
+     }
+     if(is_author_created!==prevState.is_author_created){
+      nextProps.history.push(R_AllAuthors)
+      return { is_author_created};
      }
      else return null;
   }
@@ -60,11 +66,11 @@ class AddAuthors extends Component {
     // this.go();
     // return
     
-    const {  email , name, picture , password, author_count} = this.state
+    const {  email , name, picture , password, next_author_id, picturePath} = this.state
     let errors = {}
 
 
-    if(author_count === -1){
+    if(next_author_id === -1){
       errors.name = 'API error contact programmer' 
       this.setState({ errors })
       return
@@ -95,12 +101,16 @@ class AddAuthors extends Component {
       this.setState({ errors })
       return
     }
+
+    if(picturePath === null){
+      errors.picture = 'Picture path is not set' 
+      this.setState({ errors })
+      return
+    }
     
 
-    const req_d = { email , name, password , picture}
-
-
-    console.log('DONE');
+    const req_d = { email , name, password , picture : picturePath, userType : 'admin' }
+    this.props.registerUser(req_d)
     // const pro = { email , name }
     // this.props.addAuthor(pro, 'nor');
   }
@@ -109,7 +119,10 @@ class AddAuthors extends Component {
 
   postInputChangeHandler = async (input, value, files) => {
     
+    
     if (files) {
+
+      let {next_author_id}  = this.state
 
       console.log('files[0] :', files);
       if(files[0]){
@@ -118,7 +131,7 @@ class AddAuthors extends Component {
         this.setState({ picture: img, errors });
         const formData = new FormData();
         
-        formData.append('name', 'Author1');
+        formData.append('name', `author_${++next_author_id}`);
         formData.append('image', files[0]);
         try {
 
@@ -140,7 +153,7 @@ class AddAuthors extends Component {
           let res_d = res.data
           console.log('res_d :', res_d);  
           if(res_d.Status){
-            this.setState({x : -1})
+            this.setState({x : -1, picturePath: res_d.imgUrl})
           }
           
           
@@ -160,9 +173,10 @@ class AddAuthors extends Component {
 
   render() {
 
-    let {name , email , picture , errors , password, x, author_count} = this.state
+    let {name , email , picture , errors , password, x, next_author_id, is_author_created} = this.state
 
-    console.log('author_count :', author_count);
+    console.log('next_author_id :', next_author_id);
+    console.log('is_author_created :', is_author_created);
 
     
     return (
@@ -288,5 +302,5 @@ AddAuthors.propTypes = {
 }
 
 
-export default connect(mapStateToProps,{getAuthorsCount})(AddAuthors)
+export default connect(mapStateToProps,{getAuthorsCount, registerUser})(AddAuthors)
 

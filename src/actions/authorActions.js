@@ -1,4 +1,4 @@
-import { GET_ALL_AUTHORS, GET_AUTHOR_COUNT} from './constants'
+import { GET_ALL_AUTHORS, GET_AUTHOR_COUNT, AAD_AUTHOR} from './constants'
 import axios from 'axios'
 import { TOKEN } from '../actions/constants';
 
@@ -45,5 +45,30 @@ export const getAuthorsCount = (p) => async dispatch => {
     }
 
 }
+
+
+
+export const registerUser = (p) => async dispatch => {
+
+    console.log('p :', p);
+    let req_d  = p
+    const res = await axios.post('/api/auth/register', req_d)
+
+    const res_d = res.data
+
+    console.log('res_d :', res_d);
+
+    if(res_d.Status){
+        const action = {
+            type : AAD_AUTHOR,
+            payload : res_d.Status
+        }
+        dispatch(action)
+    }else {
+        console.log('res_d.Message :', res_d.Message);
+    }
+
+}
+
 
 

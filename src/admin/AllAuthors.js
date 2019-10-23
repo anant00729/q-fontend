@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { getAllArticles } from '../actions/articleActions'
-import { ADMIN } from '../actions/constants'
+import { ADMIN, R_AllAuthors } from '../actions/constants'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getAllAuthors } from '../actions/authorActions';
@@ -34,6 +34,7 @@ class AllAuthors extends Component {
    // this.refs.vidRef.play();
 
     if(all_authors!==prevState.all_authors){
+      
       return { all_authors};
      }
      else return null;

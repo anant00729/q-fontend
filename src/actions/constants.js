@@ -8,6 +8,7 @@ export const GET_ALL_ARTICLE = 'GET_ALL_ARTICLE'
 export const GET_SINGLE_ARTICLE = 'GET_SINGLE_ARTICLE'
 export const GET_ALL_AUTHORS = 'GET_ALL_AUTHORS'
 export const GET_AUTHOR_COUNT = 'GET_AUTHOR_COUNT'
+export const AAD_AUTHOR = 'AAD_AUTHOR'
 
 
 
