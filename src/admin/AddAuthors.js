@@ -3,7 +3,11 @@ import InputTextAdmin from './common/InputTextAdmin';
 import FilePicker from './common/FilePicker';
 import { generateBase64FromImage } from '../utils/image';
 import axios from 'axios';
+import { getAuthorsCount } from '../actions/authorActions';
 import {BASE_URL} from '../actions/constants';
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+
 
 
 
@@ -15,7 +19,8 @@ class AddAuthors extends Component {
     password : '',
     picture : null,
     errors : {},
-    x : -1
+    x : -1,
+    author_count : -1
   };
 
 
@@ -23,6 +28,18 @@ class AddAuthors extends Component {
     this.setState({
         [e.target.name] : e.target.value
     })
+  }
+
+  componentDidMount(){
+    this.props.getAuthorsCount()
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState){
+    let { author_count } = nextProps.authors
+    if(author_count!==prevState.author_count){
+      return { author_count};
+     }
+     else return null;
   }
 
 
@@ -43,8 +60,16 @@ class AddAuthors extends Component {
     // this.go();
     // return
     
-    const {  email , name, picture , password} = this.state
+    const {  email , name, picture , password, author_count} = this.state
     let errors = {}
+
+
+    if(author_count === -1){
+      errors.name = 'API error contact programmer' 
+      this.setState({ errors })
+      return
+    }
+    
     
     if(name === ''){
       errors.name = 'Name is required' 
@@ -88,7 +113,9 @@ class AddAuthors extends Component {
 
       console.log('files[0] :', files);
       if(files[0]){
-        let b64 = []
+        let errors = {}
+        const img  = await generateBase64FromImage(files[0])
+        this.setState({ picture: img, errors });
         const formData = new FormData();
         
         formData.append('name', 'Author1');
@@ -104,12 +131,8 @@ class AddAuthors extends Component {
               let d = parseInt(
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               );
-
               console.log('d :', d);
-
               this.setState({x : d})
-              // Clear percentage
-              //setTimeout(() => setUploadPercentage(0), 10000);
             }
           });
 
@@ -117,16 +140,9 @@ class AddAuthors extends Component {
           let res_d = res.data
           console.log('res_d :', res_d);  
           if(res_d.Status){
-            let errors = {}
-            const img  = await generateBase64FromImage(files[0])
-            this.setState({ picture: img, errors, x : -1 });
+            this.setState({x : -1})
           }
-
-
-
-          for(let f of files){
-            b64.push(await generateBase64FromImage(f)) 
-          }
+          
           
         } catch (error) {
           let errors = {}
@@ -144,7 +160,9 @@ class AddAuthors extends Component {
 
   render() {
 
-    let {name , email , picture , errors , password, x} = this.state
+    let {name , email , picture , errors , password, x, author_count} = this.state
+
+    console.log('author_count :', author_count);
 
     
     return (
@@ -260,4 +278,15 @@ class AddAuthors extends Component {
 }
 
 
-export default AddAuthors
+
+const mapStateToProps = state => ({
+  authors : state.authors
+})
+
+AddAuthors.propTypes = {
+  authors : PropTypes.object.isRequired
+}
+
+
+export default connect(mapStateToProps,{getAuthorsCount})(AddAuthors)
+
