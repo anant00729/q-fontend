@@ -17,13 +17,15 @@ import li from '../images/linkedin.png';
 import srch from '../images/back.png'
 import {withRouter} from 'react-router-dom'
 import { initLogout } from '../actions/authActions'
-import { NOR } from '../actions/constants';
+import { NOR, R_Login } from '../actions/constants';
+
 
   
   class HomeMenuNew extends Component {
 
     logout = (e) => {
       this.props.initLogout(NOR);
+      this.props.history.push('/')
     }
 
     render() {
@@ -198,13 +200,17 @@ import { NOR } from '../actions/constants';
         return (
           <div className="flex  max-w-5xl w-full self-center justify-center home-menu-login-text mt-10" >
             <div className="text-black mr-4">
-              <p className="ml-10 cursor-pointer">Login</p>
+              <p className="ml-10 cursor-pointer">
+                <Link to={R_Login} >Login</Link>
+              </p>
             </div>
-            <div className="text-black mr-4 ">
+            {/* <div className="text-black mr-4 ">
               <p className="ml-4 cursor-pointer">Sign Up</p>
-            </div>
+            </div> */}
             <div className="text-black  mr-4">
-              <p className="ml-4 mr-10 cursor-pointer">New user?  Register</p>
+              <p className="ml-4 mr-10 cursor-pointer">
+                <Link to={R_Login} >New user?  Register</Link>
+              </p>
             </div>
         </div>)
       

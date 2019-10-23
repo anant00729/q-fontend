@@ -80,28 +80,7 @@ class AddArticles extends Component {
         }
       }
     }
-    // this.setState(prevState => {
-    //   let isValid = true;
-    //   for (const validator of prevState.postForm[input].validators) {
-    //     isValid = isValid && validator(value);
-    //   }
-    //   const updatedForm = {
-    //     ...prevState.postForm,
-    //     [input]: {
-    //       ...prevState.postForm[input],
-    //       valid: isValid,
-    //       value: files ? files[0] : value
-    //     }
-    //   };
-    //   let formIsValid = true;
-    //   for (const inputName in updatedForm) {
-    //     formIsValid = formIsValid && updatedForm[inputName].valid;
-    //   }
-    //   return {
-    //     postForm: updatedForm,
-    //     formIsValid: formIsValid
-    //   };
-    // });
+  
   };
 
 

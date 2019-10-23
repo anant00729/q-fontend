@@ -38,6 +38,7 @@ export const R_Admin = '/adminn'
 export const R_AllArticles = '/adminn/admin-all-articles'
 export const R_AddArticles = '/adminn/admin-add-articles'
 export const R_AllAuthors = '/adminn/admin-all-authors'
+export const R_AddAuthor = '/adminn/admin-add-author'
 
 
 export const NOR = 'nor'

@@ -9,6 +9,7 @@ import BreadCrum from './common/BreadCrum';
 import AddArticles from './AddArticles';
 import AdminLogin from './AdminLogin';
 import AllAtricles from './AllAtricles';
+import AddAuthors from './AddAuthors';
 
 import app_img from '../app_img.jpg';
 import classnames from 'classnames'
@@ -17,7 +18,7 @@ import PrivateRoute from '../base/PrivateRoute';
 import AdminPrivate from '../base/AdminPrivate';
 
 import {
-    R_AddArticles, R_Admin, R_AllArticles, R_AllAuthors
+    R_AddArticles, R_Admin, R_AllArticles, R_AllAuthors, R_AddAuthor
 } from '../actions/constants';
 
 import { Route , Switch } from 'react-router-dom'
@@ -45,6 +46,7 @@ class AdminMain extends Component {
       case R_AddArticles:
       case R_AllArticles:
       case R_AllAuthors: 
+      case R_AddAuthor: 
           isVisible = true
           break;
       case R_Admin:
@@ -68,6 +70,7 @@ class AdminMain extends Component {
               <AdminPrivate exact path={R_AddArticles} component={AddArticles}/>
               <AdminPrivate exact path={R_AllArticles} component={AllAtricles}/>
               <AdminPrivate exact path={R_AllAuthors} component={AllAuthors}/>
+              <AdminPrivate exact path={R_AddAuthor} component={AddAuthors}/>
               <Route 
                 render={(props) =>  <NotFound {...props} data='admin' onError={this.onError}/>}/>
             </Switch>

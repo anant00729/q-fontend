@@ -59,7 +59,8 @@ class Home extends Component {
                 <Route exact path={ R_ADet} component={ADet}/>
                 <Route exact path={R_Search} component={Search}/>
                 <Route exact path={R_HomeCoummunity} component={HomeCoummunity}/>
-                <PrivateRoute exact path={R_HomeMenuNew} component={HomeMenuNew}/>
+
+                <Route exact path={R_HomeMenuNew} component={HomeMenuNew}/>
                 <PrivateRoute exact path={R_CreatePost} component={CreatePost}/>
                 <PrivateRoute exact path={R_Profile} component={Profile}/>
                 <Route 

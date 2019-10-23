@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { R_HOME } from '../actions/constants';
+import { R_Login } from '../actions/constants';
 const PrivateRoute = ({component : Component,auth, ...rest}) => (
     <Route 
     {...rest}
@@ -10,7 +10,7 @@ const PrivateRoute = ({component : Component,auth, ...rest}) => (
         auth.isAuthenticated === true ? 
         (<Component {...props}/>) 
         : 
-        (<Redirect to={R_HOME}/>)}
+        (<Redirect to={R_Login}/>)}
     />
 )
 
