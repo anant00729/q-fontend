@@ -6,6 +6,7 @@ import axios from 'axios';
 import {BASE_URL} from '../actions/constants';
 
 
+
 class AddAuthors extends Component {
 
   state = {
@@ -59,13 +60,15 @@ class AddAuthors extends Component {
 
 
   postInputChangeHandler = async (input, value, files) => {
+    
     if (files) {
 
       console.log('files[0] :', files);
       if(files[0]){
         let b64 = []
         const formData = new FormData();
-        formData.append('name', 'author1');
+        
+        formData.append('name', 'Author1');
         formData.append('image', files[0]);
         try {
 
@@ -90,7 +93,8 @@ class AddAuthors extends Component {
           console.log('res_d :', res_d);  
           if(res_d.Status){
             let errors = {}
-            this.setState({ picture: res_d.imgUrl, errors });
+            const img  = await generateBase64FromImage(files[0])
+            this.setState({ picture: img, errors });
           }
 
 
@@ -168,7 +172,12 @@ class AddAuthors extends Component {
               />
 
 
-            {picture ? <img key={(new Date()).getTime()} src={picture} className="rounded shadow-md h-48 mt-2"alt="asdasd"/> : null}
+            {picture ? 
+            <img 
+            className="rounded shadow-md h-48 mt-2"
+            src={picture} alt={(new Date()).getTime()}/>
+            
+            : null}
             {errors.picture ? <p className="text-gray-600 text-xs italic text-red-500">{errors.picture}</p> : null}
           </div>
         </div>
