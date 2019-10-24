@@ -247,7 +247,7 @@ class AddAuthors extends Component {
 
 
             {picture ? 
-           <div className="
+            <div className="
             
             relative cursor-pointer shadow-md bg-white
             rounded">

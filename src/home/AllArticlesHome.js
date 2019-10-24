@@ -102,7 +102,7 @@ static getDerivedStateFromProps(nextProps, prevState){
                             <Link href="" class="
                             
                               mt-4
-                              inline-block bg-indigo-500 
+                              inline-block bg-indigo-700 
                               text-white px-2 py-2 uppercase tracking-wider 
                               text-xs font-semibold rounded-lg shadow-md 
                               max-w-lg
