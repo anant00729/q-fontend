@@ -77,10 +77,13 @@ class AddArticles extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState){
     let { all_authors, next_article_id } = nextProps.article
+    next_article_id = parseInt(next_article_id)
     if(all_authors!==prevState.all_authors){
       return { all_authors, ArticleAuthorName : all_authors[0]};
     }
     if(next_article_id!==prevState.next_article_id){
+      console.log('next_article_id :', next_article_id);
+      next_article_id += 1
       return { next_article_id};
     }
     else return null;
@@ -127,7 +130,7 @@ class AddArticles extends Component {
     if (files) {
 
       console.log('files[0] :', files);
-      next_article_id += 1
+      
       if(files[0]){
         let b64 = []
         try {
@@ -143,40 +146,48 @@ class AddArticles extends Component {
           console.log('formData :', formData);
 
 
+          let index = 0
+
           for(let _f of files){
             //let v = Object.keys(files).find(key => files[key] === _f)
-            
-            b64.push(await generateBase64FromImage(_f))
+            let blob = await generateBase64FromImage(_f)
+            b64.push(blob)
 
             let name = ''
             if(imageIndex <= 9){
-              name = `article_${++next_article_id}_0${temp}.png`
+              name = `article_${next_article_id}_0${temp}.png`
             }else {
-              name = `article_${++next_article_id}_${temp}.png`
+              name = `article_${next_article_id}_${temp}.png`
             }
+            console.log('name :', name);
             ++temp
-            formData.append('names', names);
-            //let fi = new File([_f] , name ,{ type :"image/png"})
-            
+            ++index
+            let fi = new File([_f] , name ,{ type :"image/png"})
+            formData.append(`images[${index}]`, fi);
           }
 
-          console.log('formData :', formData);
+          // console.log('formData :', formData); 
 
-          Object.keys(files).map(async _g => {
-            //let v = Object.keys(files).find(key => files[key] === files[_g])
-            formData.append(`images[${_g}]`, files[_g]);
-          })
+          // Object.keys(files).map(async _g => {
+          //   //let v = Object.keys(files).find(key => files[key] === files[_g])
+          //   formData.append(`images[${_g}]`, files[_g]);
+            
+          // })
 
           console.log('formData :', formData);
+          console.log('b64 :', b64);
 
 
 
           // Distigusih b/w main and article template
+          console.log('ArticleTemplate[i].value :', ArticleTemplate[i].value);
 
           ArticleTemplate[i].value = b64.map((picture) => {
             let data = { picture ,  x : -1 , picturePath : '', error : ''}
             return data
           })
+
+          console.log('ArticleTemplate[i].value :', ArticleTemplate[i].value);
           this.setState({ArticleTemplate})
           
 
@@ -208,7 +219,9 @@ class AddArticles extends Component {
             ArticleTemplate[i].x = -1
             ArticleTemplate[i].picturePath = res_d.imgUrl
             imageIndex += files.length
-            this.setState({ArticleTemplate})
+            this.setState({ArticleTemplate, imageIndex})
+          }else {
+            console.log('res_d :', res_d);
           }
         
           
@@ -281,10 +294,10 @@ class AddArticles extends Component {
         if(_t.value.length > 0){
           dis = _t.value.map(tem => {
 
-            
+              let ind = _t.value.indexOf(tem)
 
               return (
-                <div>
+                <div key={ind}>
                   <div className="flex flex-wrap mt-2">
                       <div className="
                       relative cursor-pointer shadow-md bg-white
