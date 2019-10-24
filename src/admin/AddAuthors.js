@@ -134,7 +134,9 @@ class AddAuthors extends Component {
         
         formData.append('token', localStorage.Admin_Token || '');
         formData.append('name', `author_${++next_author_id}`);
+        formData.append('type', 'author');
         formData.append('image', files[0]);
+        
         try {
 
           const res = await axios.post('/api/article/uploadImageForAuthor', formData, {

@@ -138,10 +138,15 @@ class AddArticles extends Component {
 
           const formData = new FormData();
         
+          let name = `article_${++next_article_id}`
+
+          console.log('name :', name);
         
           formData.append('token', localStorage.Admin_Token || '');
-          formData.append('name', `article_${++next_article_id}`);
+          formData.append('name', name);
+          formData.append('type', 'article');
           formData.append('image', files[0]);
+          
         
 
           const res = await axios.post('/api/article/uploadImageForAuthor', formData, {

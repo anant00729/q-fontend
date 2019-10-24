@@ -950,7 +950,7 @@ video {
   background-color: #a3bffa;
 }
 
-.bg-indigo-700 {
+.bg-indigo-400 {
   background-color: #7f9cf5;
 }
 
@@ -1322,7 +1322,7 @@ video {
   background-color: #a3bffa;
 }
 
-.hover\:bg-indigo-700:hover {
+.hover\:bg-indigo-400:hover {
   background-color: #7f9cf5;
 }
 
@@ -1694,7 +1694,7 @@ video {
   background-color: #a3bffa;
 }
 
-.focus\:bg-indigo-700:focus {
+.focus\:bg-indigo-400:focus {
   background-color: #7f9cf5;
 }
 
@@ -8691,7 +8691,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .sm\:bg-indigo-700 {
+  .sm\:bg-indigo-400 {
     background-color: #7f9cf5;
   }
 
@@ -9063,7 +9063,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .sm\:hover\:bg-indigo-700:hover {
+  .sm\:hover\:bg-indigo-400:hover {
     background-color: #7f9cf5;
   }
 
@@ -9435,7 +9435,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .sm\:focus\:bg-indigo-700:focus {
+  .sm\:focus\:bg-indigo-400:focus {
     background-color: #7f9cf5;
   }
 
@@ -16433,7 +16433,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .md\:bg-indigo-700 {
+  .md\:bg-indigo-400 {
     background-color: #7f9cf5;
   }
 
@@ -16805,7 +16805,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .md\:hover\:bg-indigo-700:hover {
+  .md\:hover\:bg-indigo-400:hover {
     background-color: #7f9cf5;
   }
 
@@ -17177,7 +17177,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .md\:focus\:bg-indigo-700:focus {
+  .md\:focus\:bg-indigo-400:focus {
     background-color: #7f9cf5;
   }
 
@@ -24175,7 +24175,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .lg\:bg-indigo-700 {
+  .lg\:bg-indigo-400 {
     background-color: #7f9cf5;
   }
 
@@ -24547,7 +24547,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .lg\:hover\:bg-indigo-700:hover {
+  .lg\:hover\:bg-indigo-400:hover {
     background-color: #7f9cf5;
   }
 
@@ -24919,7 +24919,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .lg\:focus\:bg-indigo-700:focus {
+  .lg\:focus\:bg-indigo-400:focus {
     background-color: #7f9cf5;
   }
 
@@ -31917,7 +31917,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .xl\:bg-indigo-700 {
+  .xl\:bg-indigo-400 {
     background-color: #7f9cf5;
   }
 
@@ -32289,7 +32289,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .xl\:hover\:bg-indigo-700:hover {
+  .xl\:hover\:bg-indigo-400:hover {
     background-color: #7f9cf5;
   }
 
@@ -32661,7 +32661,7 @@ video {
     background-color: #a3bffa;
   }
 
-  .xl\:focus\:bg-indigo-700:focus {
+  .xl\:focus\:bg-indigo-400:focus {
     background-color: #7f9cf5;
   }
 
