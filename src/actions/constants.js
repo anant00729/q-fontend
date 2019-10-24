@@ -9,6 +9,7 @@ export const GET_SINGLE_ARTICLE = 'GET_SINGLE_ARTICLE'
 export const GET_ALL_AUTHORS = 'GET_ALL_AUTHORS'
 export const GET_AUTHOR_COUNT = 'GET_AUTHOR_COUNT'
 export const AAD_AUTHOR = 'AAD_AUTHOR'
+export const GET_ARTICLE_COUNT_AND_AUTHOR_LIST = 'GET_ARTICLE_COUNT_AND_AUTHOR_LIST'
 
 
 
@@ -16,7 +17,7 @@ export const FIRST_PARA = 'fpara'
 export const PARA = 'para'
 export const INLINE_IMG = 'inline-img'
 export const BLOCK_IMG = 'block-img'
-export const POINTER = 'ponter'
+export const POINTER = 'pointer'
 export const QUOTE = 'quote'
 
 export const TOKEN = 'Token'

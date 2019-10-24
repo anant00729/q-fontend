@@ -131,6 +131,8 @@ class AddAuthors extends Component {
         this.setState({ picture: img, errors });
         const formData = new FormData();
         
+        
+        formData.append('token', localStorage.Admin_Token || '');
         formData.append('name', `author_${++next_author_id}`);
         formData.append('image', files[0]);
         try {
