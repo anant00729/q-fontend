@@ -207,8 +207,11 @@ class AddArticles extends Component {
                 Math.round((progressEvent.loaded * 100) / progressEvent.total)
               );
               console.log('d :', d);
-              ArticleTemplate[i].x = d
-              //this.setState({ArticleTemplate})
+              for(var tem of ArticleTemplate[i].value){
+                tem.x = d
+              }
+              
+              this.setState({ArticleTemplate})
             }
           });
 
@@ -216,8 +219,12 @@ class AddArticles extends Component {
           let res_d = res.data
           console.log('res_d :', res_d);  
           if(res_d.Status){
-            ArticleTemplate[i].x = -1
-            ArticleTemplate[i].picturePath = res_d.imgUrl
+            var i = 0
+            for(var tem of ArticleTemplate[i].value){
+              tem.x = -1
+              tem.picturePath = res_d.imgUrl[i]
+              ++i
+            }
             imageIndex += files.length
             this.setState({ArticleTemplate, imageIndex})
           }else {
@@ -418,6 +425,29 @@ class AddArticles extends Component {
     this.setState({ArticleTemplate})
   }
 
+
+  //  go = () => {
+  //    let {ArticleTemplate} = this.state
+     
+     
+  //    ArticleTemplate[0].value[0].x += 5 
+  //   if (ArticleTemplate[0].value[0].x <= 100) {
+  //       setTimeout(() => this.go(), 100);
+  //       //ArticleTemplate[0].x = ArticleTemplate[0].x
+  //       console.log('y :', ArticleTemplate[0].value[0].x);
+  //       this.setState({ArticleTemplate})
+  //   }else {
+  //     ArticleTemplate[0].value[0].x = -1
+  //     this.setState({ArticleTemplate})
+  //   }
+  // }
+
+  addArticle = (e) => {
+    e.preventDefault()
+    //this.go();
+    return
+  }
+
  
 
   render() {
@@ -576,6 +606,23 @@ class AddArticles extends Component {
             >+</button>
             </div>
           </div>
+          <button 
+          onClick={this.addArticle}
+          type="submit" 
+                      className="inline-block border-solid border border-white
+                      mx-auto
+                      text-white px-8 py-3 tracking-wider 
+                      font-semibold rounded-lg shadow-md 
+                      w-32
+                      text-sm
+                      hover:bg-gray-900
+                      bg-gray-800
+                      text-center
+                      "
+                    >
+            Submit                      
+          </button>
+
       </div>
     </section>
        
