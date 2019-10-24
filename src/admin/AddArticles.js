@@ -24,7 +24,6 @@ import { required, length } from '../utils/validators';
 import { generateBase64FromImage } from '../utils/image';
 import { getArticleFutureIDAndAllActiveAuthors} from '../actions/articleActions';
 
-import { link } from 'fs';
 
 
 
@@ -63,6 +62,7 @@ class AddArticles extends Component {
     all_authors : [],
     next_article_id : -1,
     errors : {},
+    imageIndex : 1,
     ArticleTemplate: [
       {
         type: FIRST_PARA,
@@ -123,33 +123,70 @@ class AddArticles extends Component {
   };
 
   postInputChangeHandlerAT = async (input, value, files, i) => {
-    let {ArticleTemplate, next_article_id} = this.state
+    let {ArticleTemplate, next_article_id, imageIndex} = this.state
     if (files) {
 
       console.log('files[0] :', files);
+      next_article_id += 1
       if(files[0]){
-        let b64 = {}
+        let b64 = []
         try {
-        
-          b64 = await generateBase64FromImage(files[0])
 
-          ArticleTemplate[i].value = b64
-          this.setState({ArticleTemplate})
-
+          
           const formData = new FormData();
-        
-          let name = `article_${++next_article_id}`
-
-          console.log('name :', name);
-        
+          
           formData.append('token', localStorage.Admin_Token || '');
-          formData.append('name', name);
           formData.append('type', 'article');
-          formData.append('image', files[0]);
+          let names = []
+          let temp = imageIndex
+
+          console.log('formData :', formData);
+
+
+          for(let _f of files){
+            //let v = Object.keys(files).find(key => files[key] === _f)
+            
+            b64.push(await generateBase64FromImage(_f))
+
+            let name = ''
+            if(imageIndex <= 9){
+              name = `article_${++next_article_id}_0${temp}.png`
+            }else {
+              name = `article_${++next_article_id}_${temp}.png`
+            }
+            ++temp
+            formData.append('names', names);
+            //let fi = new File([_f] , name ,{ type :"image/png"})
+            
+          }
+
+          console.log('formData :', formData);
+
+          Object.keys(files).map(async _g => {
+            //let v = Object.keys(files).find(key => files[key] === files[_g])
+            formData.append(`images[${_g}]`, files[_g]);
+          })
+
+          console.log('formData :', formData);
+
+
+
+          // Distigusih b/w main and article template
+
+          ArticleTemplate[i].value = b64.map((picture) => {
+            let data = { picture ,  x : -1 , picturePath : '', error : ''}
+            return data
+          })
+          this.setState({ArticleTemplate})
+          
+
+          
+
+          console.log('formData :', formData);
           
         
 
-          const res = await axios.post('/api/article/uploadImageForAuthor', formData, {
+          const res = await axios.post('/api/article/uploadImageForArticles', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             },
@@ -160,7 +197,7 @@ class AddArticles extends Component {
               );
               console.log('d :', d);
               ArticleTemplate[i].x = d
-              this.setState({ArticleTemplate})
+              //this.setState({ArticleTemplate})
             }
           });
 
@@ -170,6 +207,7 @@ class AddArticles extends Component {
           if(res_d.Status){
             ArticleTemplate[i].x = -1
             ArticleTemplate[i].picturePath = res_d.imgUrl
+            imageIndex += files.length
             this.setState({ArticleTemplate})
           }
         
@@ -179,7 +217,7 @@ class AddArticles extends Component {
           console.log('ArticleTemplate :', ArticleTemplate);
           console.log('i :', i);
 
-          ArticleTemplate[i].value = ''
+          ArticleTemplate[i].error = error
           this.setState({ArticleTemplate})
         }
       }
@@ -205,7 +243,8 @@ class AddArticles extends Component {
           ArticleTemplate[i].value = []
           break
       case INLINE_IMG:
-          ArticleTemplate[i].value = ['' , '']
+      case BLOCK_IMG:  
+          ArticleTemplate[i].value = []
           ArticleTemplate[i].x = -1
           break
       default:
@@ -231,6 +270,51 @@ class AddArticles extends Component {
     switch(_t.type){
 
       case BLOCK_IMG:
+      case INLINE_IMG:
+
+        let dis = []
+        let isMulti = false
+        if(_t.type === INLINE_IMG){
+          isMulti = true
+        }
+
+        if(_t.value.length > 0){
+          dis = _t.value.map(tem => {
+
+            
+
+              return (
+                <div>
+                  <div className="flex flex-wrap mt-2">
+                      <div className="
+                      relative cursor-pointer shadow-md bg-white
+                      rounded">
+                      <img 
+                      className="
+                      object-cover
+                      rounded
+                      h-48
+                      shadow-md" 
+                      src={tem.picture} alt={(new Date()).getTime()}
+                      />
+                      {tem.x === -1 ? null :
+                      <div className="absolute w-full top-0 h-48 insta-overlay text-center rounded shadow-md">
+                      <p className="text-white m-auto h-48 flex align-middle justify-center text-center">
+                        <span className="align-middle w-full justify-center text-center self-center">{tem.x}%</span>
+                      </p>
+                    </div>
+                      }
+                      {tem.errors? <p className="text-gray-600 text-xs italic text-red-500">{tem.errors}</p> : null}
+                    </div>
+                  </div>
+                </div>
+              )
+          })
+        }
+
+
+
+
         return (
           <div className="w-full">
             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-password">
@@ -241,47 +325,11 @@ class AddArticles extends Component {
                  id="image"
                  label="Image"
                  control="input"
-                 isMutiple={false}
+                 isMutiple={isMulti}
                  onChange={(input, value, files) => this.postInputChangeHandlerAT(input, value, files, i)}
               />
 
-
-
-            {_t.value !== '' ? 
-              <div className="flex flex-wrap">
-                <div className="
-                relative cursor-pointer shadow-md bg-white
-                rounded">
-               <img 
-               className="
-               object-cover
-               rounded
-               h-48
-               shadow-md" 
-               src={_t.value} alt={(new Date()).getTime()}
-               />
-                 {_t.x === -1 ? null :
-                 <div className="absolute w-full top-0 h-48 insta-overlay text-center rounded shadow-md">
-                 <p className="text-white m-auto h-48 flex align-middle justify-center text-center">
-                   <span className="align-middle w-full justify-center text-center self-center">{_t.x}%</span>
-                 </p>
-               </div>
-                 }
-             </div>
-              </div>
-            
-            : null}
-            {errors.picture ? <p className="text-gray-600 text-xs italic text-red-500">{errors.picture}</p> : null}
-
-            {/* {this.state.imagePreviewList == null ? 
-              null : 
-              <img src={this.state.imagePreview} className="rounded shadow-md h-48"alt="asdasd"/>
-            } */}
-
-
-
-
-            
+            {dis}
           </div>
         )
 
