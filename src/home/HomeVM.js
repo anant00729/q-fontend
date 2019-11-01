@@ -41,8 +41,8 @@ class HomeVM {
   
         ts_s.push(<div 
           onClick={() => onClick(_a.id)}
-          className={classnames('relative max-w-lg cursor-pointer md:max-w-xs bg-gray-100 flex m-auto justify-between rounded overflow-hidden shadow-md' ,{'mb-4' : i !== (12) - 1})}>
-          <div className="p-2">
+          className={classnames('relative w-full cursor-pointer  bg-gray-100 flex m-auto justify-between rounded overflow-hidden shadow-md article-card-home-mobile' ,{'mb-4' : i !== (12) - 1})}>
+          <div className="p-2 flex-1">
             <p className="text-gray-700 text-xl">{_a.ArticleName}</p>
             <p className="text-gray-700 text-xs">{_a.SubTitle}
             </p>
@@ -54,13 +54,18 @@ class HomeVM {
           alt="asdjasd"/>
         </div>)
   
+
+        let tags = ''
+        if(_a.SearchTags === ''){
+          tags =  JSON.parse(_a.SearchTags)
   
-        let tags =  JSON.parse(_a.SearchTags)
+          tags = tags.map(_t=>{
+            return  (<span class="inline-block mt-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+              {_t}</span>)
+          })
+        }
   
-        tags = tags.map(_t=>{
-          return  (<span class="inline-block mt-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-            {_t}</span>)
-        })
+        
   
         ts_l.push(
                 

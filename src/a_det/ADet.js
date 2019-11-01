@@ -105,12 +105,12 @@ class ADet extends Component {
     
             case BLOCK_IMG : 
             return (
-              <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
+              <img class="w-full max-w-2xl object-cover mt-1" src={_at.value[0].picturePath} alt="Sunset in the mountains"/>
             )
     
             case INLINE_IMG : 
             return (
-              <img class="w-full max-w-2xl object-cover mt-1" src={_at.value} alt="Sunset in the mountains"/>
+              <img class="w-full max-w-2xl object-cover mt-1" src={_at.value[0].picturePath} alt="Sunset in the mountains"/>
             )
           
     
@@ -138,7 +138,7 @@ class ADet extends Component {
     
     
               <section className="flex my-2 flex-wrap content-center">
-                <img src={_s.MainImg}
+                <img src={_s.picture}
                 className="w-12 h-12 rounded-full"
                 alt="12e21"/>
     

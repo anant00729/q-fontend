@@ -45,8 +45,8 @@ class AllAtricles extends Component {
               <td className="py-4 px-6 border-b ">
                 <img src={_a.MainImg} className="rounded-full shadow-md w-12 h-12"alt="asdasd"/>
               </td>
-                <td className="py-4 px-6 border-b ">{_a.ArticleName}</td>
-                <td className="py-4 px-6 border-b ">
+                <td className="py-4 px-6 border-b">{_a.ArticleName}</td>
+                <td className="py-4 px-6 border-b">
                   {_a.ArticleAuthorName}
                 </td>
                 <td className="py-4 px-6 border-b ">
@@ -60,13 +60,13 @@ class AllAtricles extends Component {
 
     return (
       <div className="bg-white shadow-md rounded my-6">
-          <table className="text-left w-full border-collapse"> {/*Border collapse doesn't work on this site yet but it's available in newer tailwind versions */}
+          <table className="text-left w-full border-collapse"> 
             <thead>
               <tr>
-                <th className="w-20 py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b ">Image</th>
-                <th className="py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b ">Article Name</th>
-                <th className="w-56 py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b ">Author</th>
-                <th className="w-20 py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b ">ISActive</th>
+                <th className="w-20 py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b">Image</th>
+                <th className="py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b">ArticleName</th>
+                <th className="w-56 py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b">Author</th>
+                <th className="w-20 py-4 px-6 bg-gray-300 font-bold uppercase text-sm text-grey-dark border-b">ISActive</th>
               </tr>
             </thead>
             <tbody>

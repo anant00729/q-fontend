@@ -1,4 +1,4 @@
-import { GET_ALL_ARTICLE, GET_SINGLE_ARTICLE, GET_ARTICLE_COUNT_AND_AUTHOR_LIST} from '../actions/constants'
+import { GET_ALL_ARTICLE, GET_SINGLE_ARTICLE, GET_ARTICLE_COUNT_AND_AUTHOR_LIST, ADD_SINGLE_ARTICLE} from '../actions/constants'
 
 
 
@@ -8,6 +8,8 @@ const initialState = {
     isVisible : true,
     all_authors : [],
     next_article_id : -1,
+    is_article_created : false
+    
 }
 
 export default function(state = initialState, action) {
@@ -28,8 +30,18 @@ export default function(state = initialState, action) {
         return {
             ...state,
             all_authors : action.payload.Authors,
-            next_article_id : action.payload.Count
+            next_article_id : action.payload.Count,
+            is_article_created : false
         }
+
+        case ADD_SINGLE_ARTICLE:
+        return {
+            ...state,
+            is_article_created : action.payload.Status
+        }
+
+
+        
         default:
             return state
     }
